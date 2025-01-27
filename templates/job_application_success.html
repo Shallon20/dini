@@ -1,0 +1,24 @@
+{% extends 'master.html' %}
+
+{% block title %}
+    <title>Application Submitted | Dini</title>
+{% endblock %}
+
+{% block content %}
+<section class="container py-5 text-center">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card p-4 shadow-sm border-0">
+                <div class="card-body">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+                    <h2 class="mt-3">Thank You for Applying!</h2>
+                    <p class="mt-3">We have received your application to become an interpreter at <strong>Dini</strong>. 
+                    Our team will review your application and get in touch with you shortly.</p>
+                    <p>If you have any questions, feel free to <a href="{% url 'contact' %}" class="text-primary">contact us</a>.</p>
+                    <a href="{% url 'home' %}" class="btn btn-primary mt-4">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

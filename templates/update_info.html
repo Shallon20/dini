@@ -1,0 +1,27 @@
+{% extends 'master.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+    <title>Update Info</title>
+{% endblock %}
+{% block extra_css %}
+    
+{% endblock %}
+
+{% block content %}
+    
+    
+    <div class="container py-5">
+        <strong>User Information</strong>
+        <form method="POST" action="{% url 'update_info' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <strong>Shipping Information</strong>
+            {{ shipping_form.as_p }}
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Update Info</button>
+            </div>
+        </form>
+     </div>
+{% endblock %}

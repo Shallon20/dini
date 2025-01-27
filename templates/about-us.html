@@ -1,0 +1,138 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    <title>About Us</title>
+{% endblock %}
+
+{% block extra_css %}
+    <link href="{% static 'css/about.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>About Us<br></h2>
+            <p>Connecting the deaf community with interpreters for effective communication and inclusivity.</p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row gy-4">
+                <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
+                    <img src="{% static 'img/about.jpg' %}" class="img-fluid" alt="About Us">
+                    <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
+                </div>
+                <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Breaking Communication Barriers for the Deaf Community</h3>
+                    <p class="fst-italic">
+                        We are committed to bridging the gap between the deaf community and the world by providing
+                        access to interpreters and resources that empower communication.
+                    </p>
+                    <ul>
+                        <li><i class="bi bi-check2-all"></i> <span>Facilitating seamless communication through virtual and physical interpretation services.</span>
+                        </li>
+                        <li><i class="bi bi-check2-all"></i> <span>Promoting inclusivity by connecting deaf individuals with service providers in all sectors.</span>
+                        </li>
+                        <li><i class="bi bi-check2-all"></i> <span>Providing resources to learn and engage in sign language interpretation.</span>
+                        </li>
+                    </ul>
+                    <p>
+                        Our mission is to ensure equal access to services and opportunities for the deaf community,
+                        fostering a society where everyone can thrive regardless of their hearing ability.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </section><!-- /About Section -->
+
+
+    <!-- Faq Section -->
+    <section id="faq" class="faq section light-background">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Frequently Asked Questions</h2>
+            <p>Your questions about our services and platform answered.</p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+
+                    <div class="faq-container">
+
+                        <div class="faq-item">
+                            <h3>How does the system connect the deaf community with interpreters?</h3>
+                            <div class="faq-content">
+                                <p>The platform enables deaf users, service providers, and interpreters to connect
+                                    either virtually or physically to facilitate effective communication.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <h3>Are interpreters available for all sectors?</h3>
+                            <div class="faq-content">
+                                <p>Yes, our interpreters are trained to provide services across sectors such as
+                                    healthcare, education, tourism, and more.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <h3>Can deaf tourists use this platform?</h3>
+                            <div class="faq-content">
+                                <p>Absolutely! The platform supports deaf tourists by connecting them with interpreters
+                                    for a seamless cultural and travel experience.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <h3>Do I need an internet connection to use this system?</h3>
+                            <div class="faq-content">
+                                <p>An internet connection is required for virtual interpretation services, but physical
+                                    interpretation can be arranged without it.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <h3>How can I book an interpreter?</h3>
+                            <div class="faq-content">
+                                <p>You can book an interpreter through our platform by browsing available profiles and
+                                    selecting the one that meets your needs.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <h3>What resources are available for learning sign language?</h3>
+                            <div class="faq-content">
+                                <p>Our platform provides learning materials, tutorials, and access to certified sign
+                                    language instructors.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                    </div>
+
+                </div><!-- End Faq Column-->
+
+            </div>
+
+        </div>
+
+    </section><!-- /Faq Section -->
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'master.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+    <title>Interpreter Job Application | Dini</title>
+{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <style>
+        .application-form-card {
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+
+        .application-form-card .card-header {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .application-form-card label {
+            font-weight: 500;
+        }
+
+        .form-control, .btn-primary {
+            border-radius: 0.25rem;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card application-form-card">
+                <div class="card-header text-center">
+                    <h2>Apply to Become an Interpreter</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="first_name" class="form-label">First Name</label>
+                            {{ form.first_name|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            {{ form.last_name|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            {{ form.email|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            {{ form.phone|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="experience_years" class="form-label">Years of Experience</label>
+                            {{ form.experience_years|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="languages" class="form-label">Languages (e.g., ASL, English, Latvian)</label>
+                            {{ form.languages|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="cover_letter" class="form-label">Cover Letter</label>
+                            {{ form.cover_letter|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="resume" class="form-label">Upload Resume</label>
+                            {{ form.resume|add_class:"form-control" }}
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

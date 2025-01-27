@@ -1,0 +1,176 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Welcome to the Deaf Community</title>
+{% endblock %}
+
+{% block content %}
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+
+        <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+            <div class="carousel-item active">
+                <img src="{% static 'img/home1.jpg' %}" alt="">
+                <div class="container">
+                    <h2>Welcome to the Deaf Community Website</h2>
+                    <p>Empowering the Deaf and Hard of Hearing with information, resources, and access to interpretation services for better communication and inclusion.</p>
+                    <a href="{% url 'about' %}" class="btn-get-started">Learn More</a>
+                </div>
+            </div><!-- End Carousel Item -->
+
+            <div class="carousel-item">
+                <img src="{% static 'img/home2.jpg' %}" alt="">
+                <div class="container">
+                    <h2>Access Sign Language Services</h2>
+                    <p>We connect you with professional sign language interpreters for a variety of services, including healthcare, education, and legal matters.</p>
+                    <a href="{% url 'about' %}" class="btn-get-started">Read More</a>
+                </div>
+            </div><!-- End Carousel Item -->
+
+            <div class="carousel-item">
+                <img src="{% static 'img/home3.jpg' %}" alt="">
+                <div class="container">
+                    <h2>Join Our Community</h2>
+                    <p>Stay informed and connected with a community dedicated to providing resources and support for the Deaf and Hard of Hearing individuals.</p>
+                    <a href={% url 'about' %} class="btn-get-started">Join Us</a>
+                </div>
+            </div><!-- End Carousel Item -->
+
+            <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+            </a>
+
+            <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+            </a>
+
+            <ol class="carousel-indicators"></ol>
+
+        </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- Featured Services Section -->
+    <section id="featured-services" class="featured-services section">
+
+        <div class="container">
+
+            <div class="row gy-4">
+
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-item position-relative">
+                        <div class="icon"><i class="fas fa-language icon"></i></div>
+                        <h4><a href="" class="stretched-link">Sign Language Interpretation</a></h4>
+                        <p>Access skilled interpreters for meetings, medical appointments, and more.</p>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-item position-relative">
+                        <div class="icon"><i class="fas fa-phone-alt icon"></i></div>
+                        <h4><a href="" class="stretched-link">Video Relay Services</a></h4>
+                        <p>Use video technology to communicate with hearing individuals through sign language.</p>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-item position-relative">
+                        <div class="icon"><i class="fas fa-book-open icon"></i></div>
+                        <h4><a href="" class="stretched-link">Educational Resources</a></h4>
+                        <p>Find learning materials and guides to help with sign language and Deaf culture.</p>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-item position-relative">
+                        <div class="icon"><i class="fas fa-users icon"></i></div>
+                        <h4><a href="" class="stretched-link">Community Support</a></h4>
+                        <p>Join a supportive network of Deaf and Hard of Hearing individuals and allies.</p>
+                    </div>
+                </div><!-- End Service Item -->
+
+            </div>
+
+        </div>
+
+    </section><!-- /Featured Services Section -->
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section accent-background">
+
+        <div class="container">
+    <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+        <div class="col-xl-10">
+            <div class="text-center">
+                <h3>Join Us as a Sign Language Interpreter</h3>
+                <p>Are you a skilled sign language interpreter looking to make a difference? Apply today and be part of a team dedicated to bridging communication gaps in the Deaf community.</p>
+                <a class="cta-btn" href="{% url 'job_application' %}">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </section><!-- /Call To Action Section -->
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats section">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-item d-flex align-items-center w-100 h-100">
+                        <i class="fas fa-users flex-shrink-0"></i>
+                        <div>
+                            <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1"
+                                  class="purecounter"></span>
+                            <p>Active Members</p>
+                        </div>
+                    </div>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-item d-flex align-items-center w-100 h-100">
+                        <i class="fas fa-handshake flex-shrink-0"></i>
+                        <div>
+                            <span data-purecounter-start="0" data-purecounter-end="4" data-purecounter-duration="1"
+                                  class="purecounter"></span>
+                            <p>Interpreters Available</p>
+                        </div>
+                    </div>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-item d-flex align-items-center w-100 h-100">
+                        <i class="fas fa-chalkboard-teacher flex-shrink-0"></i>
+                        <div>
+                            <span data-purecounter-start="0" data-purecounter-end="9" data-purecounter-duration="1"
+                                  class="purecounter"></span>
+                            <p>Educational Programs</p>
+                        </div>
+                    </div>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-item d-flex align-items-center w-100 h-100">
+                        <i class="fas fa-comment-dots flex-shrink-0"></i>
+                        <div>
+                            <span data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1"
+                                  class="purecounter"></span>
+                            <p>Messages Sent</p>
+                        </div>
+                    </div>
+                </div><!-- End Stats Item -->
+
+            </div>
+
+        </div>
+
+    </section><!-- /Stats Section -->
+
+{% endblock %}

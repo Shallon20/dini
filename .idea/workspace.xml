@@ -5,58 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="678a464f-7e06-4f5c-be25-66d49a85a0e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/DjangoProject1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/css/about.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/css/appointment.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/css/contact.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/css/gallery.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/css/interpreters.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/css/services.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/css/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/css/testimonials.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/about.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/gallery/gal1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/gallery/gal10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/gallery/gal11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/gallery/gal2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/gallery/gal3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/gallery/gal4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/gallery/gal5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/gallery/gal6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/gallery/gal7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/gallery/gal8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/gallery/gal9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/home1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/home2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/home3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/interpreters/interpreter1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/interpreters/interpreter2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/interpreters/interpreter4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_app/static/img/interpreters/interpreter5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/about-us.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/appointment.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/contact-us.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/gallery.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/interpreters.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/job_application.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/job_application_success.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/master.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/pricing.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/services.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/testimonial.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/update_info.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/update_password.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/update_user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,9 +24,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Shallon20&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Shallon20/dini.git&quot;,
+    &quot;accountId&quot;: &quot;beca7a62-bfc0-4708-bd22-1909108eda60&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2sAxqiDkrCUYxXFDS3IaD9qc1vC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -94,8 +55,8 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "django.template.preview.state": "SHOW_EDITOR",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/admins/DjangoProject1/my_app/static/img/gallery",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/admins/DjangoProject1",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -161,7 +122,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737912373142</updated>
-      <workItem from="1737912374428" duration="19381000" />
+      <workItem from="1737912374428" duration="20029000" />
+      <workItem from="1737977801357" duration="112000" />
     </task>
     <servers />
   </component>

@@ -69,18 +69,18 @@ class UpdateUserForm(UserChangeForm):
         self.fields['username'].help_text = '<span class="glyphicon glyphicon-user"></span>'
 
 
-class ContactForm(forms.Form):
-    name = forms.CharField(
-        max_length=30,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your name'}),
-    )
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
-    )
-    message = forms.CharField(
-        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter your message', 'rows': 5})
-    )
-
+# class ContactForm(forms.Form):
+#     name = forms.CharField(
+#         max_length=30,
+#         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your name'}),
+#     )
+#     email = forms.EmailField(
+#         widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
+#     )
+#     message = forms.CharField(
+#         widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter your message', 'rows': 5})
+#     )
+#
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -124,3 +124,11 @@ class InterpreterApplicationForm(forms.ModelForm):
             "cover_letter": forms.Textarea(attrs={"class": "form-control", "placeholder": "Cover Letter"}),
             "resume": forms.FileInput(attrs={"class": "form-control"}),
         }
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter your message', 'rows': 5})
+
+    )

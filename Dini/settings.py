@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+from decouple import config
 from django.contrib import messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -122,6 +123,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+GOOGLE_MAPS_API_KEY = config('GOOGLE_MAPS_API_KEY')
+
+
+
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static_files'
 STATICFILES = [BASE_DIR / 'my_app/static']
@@ -150,3 +155,17 @@ LOGIN_URL = 'login'
 
 SESSION_COOKIE_AGE = 3600  # 1 hour
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+# Email settings for Gmail SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # Your Gmail address
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Your app password
+DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')  # Default sender address
+
+
+# go to myaccount.google.com/lesssecureapps
+# https://accounts.google.com/DisplayUnlockCaptcha
+# myaccount.google.com/apppasswords

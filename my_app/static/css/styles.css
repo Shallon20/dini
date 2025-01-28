@@ -1,13 +1,4 @@
 @import url("main.css");
-:root{
-    --nav-font: "Quicksand", serif;
-    --heading-color: #8EC4E6;
-    --white: #ffffff;
-}
-
-body{
-
-}
 
 /* Hero Section */
 .hero {

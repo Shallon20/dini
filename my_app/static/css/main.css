@@ -1,19 +1,19 @@
 
 :root {
-    --heading-font: "Quicksand", sans-serif;
+    --heading-font: "EB Garamond", serif;
 }
 
 :root {
     --background-color: #ffffff;
     --default-color: #444444;
-    --heading-color: #8EC4E6;
-    --accent-color: #5bdee3;
+    --heading-color: #449cd5;
+    --accent-color: #41a1a5;
     --surface-color: #ffffff;
     --contrast-color: #ffffff;
 }
 :root {
     --nav-color: #444444;
-    --nav-hover-color: #3fbbc0;
+    --nav-hover-color: #3c7d80;
     --nav-mobile-background-color: #ffffff;
     --nav-dropdown-background-color: #ffffff;
     --nav-dropdown-color: #444444;
@@ -34,10 +34,10 @@
 }
 
 .accent-background {
-    --background-color: #3fbbc0;
+    --background-color: #41a1a5;
     --default-color: #ffffff;
     --heading-color: #ffffff;
-    --surface-color: #65c9cd;
+    --surface-color: #63b3b6;
 }
 
 /* Smooth scroll */
@@ -144,7 +144,6 @@ h6 {
 
 .header .top-bar {
     background-color: var(--heading-color);
-    color: var(--white);
     height: 40px;
     padding: 0;
     transition: all 0.5s;
@@ -153,7 +152,7 @@ h6 {
 .header .logo h1 {
     font-size: 30px;
     margin: 0;
-    font-family: "Henny Penny", serif;
+    font-family: "Caveat", serif;
     font-weight: 700;
     color: var(--heading-color);
 }

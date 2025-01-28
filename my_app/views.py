@@ -1,12 +1,15 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
+from reportlab.lib.randomtext import subjects
+from django.core.mail import send_mail
 from my_app.forms import LoginForm, SignupForm, UpdateUserForm, UserInfoForm, ChangePasswordForm, \
-    InterpreterApplicationForm
+    InterpreterApplicationForm, ContactForm
 from my_app.models import Profile
-
+import googlemaps
+from django.conf import settings
 
 # Create your views here.
 def home(request):
@@ -22,8 +25,27 @@ def services(request):
 
 
 def contact(request):
-    return render(request, 'contact-us.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
 
+            # Send email to the recipient
+            subject = f"Contact Us message from {name}"
+            body = f"Message from: {name}\nEmail: {email}\n\n{message}"
+            recipient_list = ['dinicommunity2024@gmail.com']
+
+            send_mail(subject, body, settings.EMAIL_HOST_USER, recipient_list)
+            return HttpResponse('Thank you for your message!')  # You can redirect to a thank-you page
+        else:
+            return HttpResponse('Form is invalid, please try again.')
+
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact-us.html', {'form': form})
 
 def gallery(request):
     return render(request, 'gallery.html')
@@ -36,8 +58,10 @@ def login(request):
 def register(request):
     return render(request, 'register.html')
 
+
 def interpreters(request):
     return render(request, 'interpreters.html')
+
 
 def login_user(request):
     if request.method == 'POST':
@@ -140,6 +164,7 @@ def update_info(request):
         messages.error(request, 'You are not logged in.')
         return redirect('login')
 
+
 def update_password(request):
     if request.user.is_authenticated:
         current_user = request.user
@@ -164,7 +189,6 @@ def update_password(request):
         return redirect('login')
 
 
-
 def job_application(request):
     if request.method == 'POST':
         form = InterpreterApplicationForm(request.POST, request.FILES)
@@ -174,6 +198,7 @@ def job_application(request):
     else:
         form = InterpreterApplicationForm()
     return render(request, 'job_application.html', {'form': form})
+
 
 def job_application_success(request):
     return render(request, 'job_application_success.html')

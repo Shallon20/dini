@@ -5,11 +5,13 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from reportlab.lib.randomtext import subjects
 from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from my_app.forms import LoginForm, SignupForm, UpdateUserForm, UserInfoForm, ChangePasswordForm, \
     InterpreterApplicationForm, ContactForm
 from my_app.models import Profile
 import googlemaps
 from django.conf import settings
+
 
 # Create your views here.
 def home(request):
@@ -32,21 +34,28 @@ def contact(request):
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
 
-            # Send email to the recipient
+            # Email details
             subject = f"Contact Us message from {name}"
             body = f"Message from: {name}\nEmail: {email}\n\n{message}"
             recipient_list = ['dinicommunity2024@gmail.com']
 
-            send_mail(subject, body, settings.EMAIL_HOST_USER, recipient_list)
-            return HttpResponse('Thank you for your message!')  # You can redirect to a thank-you page
-        else:
-            return HttpResponse('Form is invalid, please try again.')
+            # Create and send email with Reply-To header
+            email_message = EmailMessage(
+                subject=subject,
+                body=body,
+                from_email=settings.EMAIL_HOST_USER,
+                to=recipient_list,
+                reply_to=[email]
+            )
+            email_message.send(fail_silently=False)
+
+            # Render confirmation message
+            return render(request, 'contact-us.html', {'name': name})
 
     else:
         form = ContactForm()
 
     return render(request, 'contact-us.html', {'form': form})
-
 def gallery(request):
     return render(request, 'gallery.html')
 

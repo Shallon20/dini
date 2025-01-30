@@ -1,9 +1,22 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+
 from django.db.models.signals import post_save
 
 
 # Create your models here.
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    short_description = models.TextField()
+    long_description = models.TextField(max_length=500, default=True)
+    image = models.ImageField(upload_to='media/')
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+    class Meta:
+        db_table = 'newsEvents'
+
 class Client(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -53,8 +66,10 @@ class InterpreterApplication(models.Model):
     experience_years = models.IntegerField()
     languages = models.TextField()
     cover_letter = models.TextField()
-    resume = models.FileField(upload_to="resumes/")
+    resume = models.FileField(upload_to="media/")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+

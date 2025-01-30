@@ -32,8 +32,9 @@ urlpatterns = [
     path('update_info', views.update_info, name='update_info'),
     path('update_password', views.update_password, name='update_password'),
     path('interpreters', views.interpreters, name='interpreters'),
+    path('appointment', views.appointment, name='appointment'),
     path('job_application', views.job_application, name='job_application'),
     path('job_application_success', views.job_application_success, name='job_application_success'),
-
+    path('event_detail/<int:event_id>/', views.event_detail, name='event_detail'),
     path('admin/', admin.site.urls),
 ]

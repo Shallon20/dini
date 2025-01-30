@@ -1,0 +1,22 @@
+{% extends 'master.html' %}
+{% load  static %}
+
+{% block title %}
+    <title>{{ event.title }}</title>
+{% endblock %}
+
+{% block content %}
+<section class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>{{ event.title }}</h1>
+            <p><strong>Description:</strong></p>
+            <p>{{ event.long_description }}</p>
+            <p><strong>Date:</strong> {{ event.date }}</p>
+        </div>
+        <div class="col-md-4">
+            <img src="{{event.image.url }}" alt="{{ event.title }}" class="img-fluid">
+        </div>
+    </div>
+</section>
+{% endblock %}

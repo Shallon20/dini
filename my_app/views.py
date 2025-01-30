@@ -2,20 +2,18 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from reportlab.lib.randomtext import subjects
-from django.core.mail import send_mail
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import EmailMessage
 from my_app.forms import LoginForm, SignupForm, UpdateUserForm, UserInfoForm, ChangePasswordForm, \
     InterpreterApplicationForm, ContactForm
-from my_app.models import Profile
-import googlemaps
+from my_app.models import Profile, Event
 from django.conf import settings
 
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    events = Event.objects.all()
+    return render(request, 'home.html', {'events': events})
 
 
 def about(request):
@@ -211,3 +209,12 @@ def job_application(request):
 
 def job_application_success(request):
     return render(request, 'job_application_success.html')
+
+
+def appointment(request):
+    return render(request, 'appointment.html')
+
+
+def event_detail(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    return render(request, 'event_detail.html', {'event': event})

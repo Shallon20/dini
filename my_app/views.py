@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import EmailMessage
 from my_app.forms import LoginForm, SignupForm, UpdateUserForm, UserInfoForm, ChangePasswordForm, \
-    InterpreterApplicationForm, ContactForm
+    InterpreterApplicationForm, ContactForm, AppointmentForm
 from my_app.models import Profile, Event
 from django.conf import settings
 
@@ -67,7 +67,7 @@ def register(request):
 
 
 def interpreters(request):
-    return render(request, 'interpreters.html')
+    return render(request, 'online_interpretation.html')
 
 
 def login_user(request):
@@ -212,9 +212,56 @@ def job_application_success(request):
 
 
 def appointment(request):
-    return render(request, 'appointment.html')
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            service_type = form.cleaned_data['service_type']
+            message = form.cleaned_data['message']
+            date = form.cleaned_data['date']
 
+            # Email details
+            subject = f"Appointment Booking from {name}"
+            body = (
+                f"Message from: {name}\n"
+                f"Phone Number: {phone}\n"
+                f"Email: {email}\n"
+                f"Appointment Date: {date}\n"
+                f"Service Type: {service_type}\n\n"
+                f"Full Message: {message}"
+            )
+            recipient_list = ['dinicommunity2024@gmail.com']
 
+            # Send email
+            email_message = EmailMessage(
+                subject=subject,
+                body=body,
+                from_email=settings.EMAIL_HOST_USER,
+                to=recipient_list,
+                reply_to=[email]
+            )
+            email_message.send(fail_silently=False)
+
+            # Success message
+            return render(request, 'appointment.html', {
+                'form': AppointmentForm(),  # Reset form
+                'success': 'Your appointment request has been submitted successfully!'
+            })
+
+    else:
+        form = AppointmentForm()
+
+    return render(request, 'appointment.html', {'form': form})
 def event_detail(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     return render(request, 'event_detail.html', {'event': event})
+
+
+def online_interpretation(request):
+    return render(request, 'online_interpretation.html')
+
+
+def virtual_interpretation(request):
+    return render(request, 'virtual_interpretation.html')

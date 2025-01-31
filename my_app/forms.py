@@ -132,3 +132,21 @@ class ContactForm(forms.Form):
         widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter your message', 'rows': 5})
 
     )
+
+class AppointmentForm(forms.Form):
+    SERVICE_CHOICES = [
+        ("onsite", "Onsite Interpretation"),
+        ("virtual", "Virtual Interpretation"),
+    ]
+
+    name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    phone = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    service_type = forms.ChoiceField(choices=SERVICE_CHOICES, widget=forms.Select(attrs={'class': 'form-select'}))
+    date = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'})
+    )
+    message = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter details including location or link', 'rows': 5}),
+        required=False
+    )

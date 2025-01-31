@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+from django.conf import settings
 from django.contrib import messages
+from django.template.context_processors import static
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -169,3 +171,5 @@ DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')  # Default sender address
 # go to myaccount.google.com/lesssecureapps
 # https://accounts.google.com/DisplayUnlockCaptcha
 # myaccount.google.com/apppasswords
+
+

@@ -9,5 +9,6 @@ admin.site.register(Profile)
 
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('title', 'short_description', 'date_created')
+    list_display = ('title', 'date_created', 'is_new')  #
+    list_filter = ('is_new',)
     search_fields = ('title', 'short_description')

@@ -10,12 +10,12 @@
     <div class="row">
         <div class="col-md-8">
             <h1>{{ event.title }}</h1>
-            <p><strong>Description:</strong></p>
             <p>{{ event.long_description }}</p>
-            <p><strong>Date:</strong> {{ event.date }}</p>
+            <p class="text-muted"><small>Published on: {{ event.date_created|date:"F d, Y" }}</small></p>
         </div>
         <div class="col-md-4">
-            <img src="{{event.image.url }}" alt="{{ event.title }}" class="img-fluid">
+            <img src="{{ event.image.url }}" alt="{{ event.title }}" class="img-fluid">
+
         </div>
     </div>
 </section>

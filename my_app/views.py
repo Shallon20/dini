@@ -12,7 +12,7 @@ from django.conf import settings
 
 # Create your views here.
 def home(request):
-    events = Event.objects.all()
+    events = Event.objects.filter(is_new=True).order_by('-date_created')
     return render(request, 'home.html', {'events': events})
 
 
@@ -265,3 +265,8 @@ def online_interpretation(request):
 
 def virtual_interpretation(request):
     return render(request, 'virtual_interpretation.html')
+
+
+def past_events(request):
+    events = Event.objects.filter(is_new=False)  # Get past events
+    return render(request, 'past_events.html', {'events': events})

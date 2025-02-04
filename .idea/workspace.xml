@@ -5,24 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="678a464f-7e06-4f5c-be25-66d49a85a0e4" name="Changes" comment="Email messaging on contact us page">
-      <change afterPath="$PROJECT_DIR$/templates/online_interpretation.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/virtual_interpretation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/past_events.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dini/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dini/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dini/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dini/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/static/css/about.css" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/css/about.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/static/css/gallery.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/static/css/interpreters.css" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/css/interpretation.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/about-us.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about-us.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/appointment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/appointment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/gallery.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/event_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/event_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/interpreters.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/job_application.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/job_application.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/master.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,7 +148,9 @@
       <workItem from="1738328693010" duration="5753000" />
       <workItem from="1738334507049" duration="56000" />
       <workItem from="1738334586016" duration="50000" />
-      <workItem from="1738334655249" duration="35000" />
+      <workItem from="1738334655249" duration="129000" />
+      <workItem from="1738660498592" duration="2931000" />
+      <workItem from="1738668307621" duration="1320000" />
     </task>
     <servers />
   </component>

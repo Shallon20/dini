@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.template.context_processors import static
+from django.conf.urls.static import static
 from django.urls import path
 from . import settings
 from my_app import views
@@ -39,5 +39,8 @@ urlpatterns = [
     path('job_application', views.job_application, name='job_application'),
     path('job_application_success', views.job_application_success, name='job_application_success'),
     path('event_detail/<int:event_id>/', views.event_detail, name='event_detail'),
+    path('past_events', views.past_events, name='past_events'),
     path('admin/', admin.site.urls),
-] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

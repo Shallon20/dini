@@ -1,4 +1,5 @@
 {% extends 'master.html' %}
+{% load crispy_forms_filters %}
 {% load static %}
 
 {% block title %}
@@ -26,7 +27,7 @@
         
         <form action="{% url 'appointment' %}" method="post" class="bg-white p-5">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form|crispy }}
             <div class="text-center">
                 <button type="submit" class="btn-submit">Book Interpreter</button>
             </div>

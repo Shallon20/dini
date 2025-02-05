@@ -52,98 +52,45 @@
         </div>
 
     </section><!-- /About Section -->
+<!-- Interpreters Section -->
+<section id="interpreter" class="interpreter section light-background">
 
-    <!-- Interpreters Section -->
-    <section id="doctors" class="doctors section light-background">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Interpreters</h2>
+        <p>Meet our team of professional interpreters dedicated to empowering communication and fostering
+            inclusivity for the deaf community.</p>
+    </div><!-- End Section Title -->
 
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Interpreters</h2>
-            <p>Meet our team of professional interpreters dedicated to empowering communication and fostering
-                inclusivity for the deaf community.</p>
-        </div><!-- End Section Title -->
-
-        <div class="container">
-
-            <div class="row gy-4">
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                    <div class="team-member">
-                        <div class="member-img">
-                            <img src="{% static 'img/interpreters/interpreter1.jpg' %}" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter-x"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <h4>Walter White</h4>
-                            <span>Chief Medical Officer</span>
+    <div class="container">
+    <div class="row gy-4">
+        {% for interpreter in interpreters %}
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:100 }}">
+                <div class="team-member bg-white p-3 rounded-lg">
+                    <div class="member-img">
+                        <img src="{% if interpreter.profile_image %}{{ interpreter.profile_image.url }}{% else %}{% static 'img/gallery/default.png' %}{% endif %}" class="img-fluid" alt="">
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter-x"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""><i class="bi bi-linkedin"></i></a>
                         </div>
                     </div>
-                </div><!-- End Team Member -->
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                    <div class="team-member">
-                        <div class="member-img">
-                            <img src="{% static 'img/interpreters/interpreter2.jpg' %}" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter-x"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <h4>Sarah Jhonson</h4>
-                            <span>Anesthesiologist</span>
-                        </div>
+                    <div class="member-info">
+                        <h4>{{ interpreter.first_name }} {{ interpreter.last_name }}</h4>
+                        <span>{{ interpreter.experience_years }} years of experience</span>
                     </div>
-                </div><!-- End Team Member -->
+                </div>
+            </div><!-- End Team Member -->
+        {% endfor %}
+    </div>
+</div>
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                    <div class="team-member">
-                        <div class="member-img">
-                            <img src="{% static 'img/interpreters/interpreter5.jpg' %}" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter-x"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <h4>William Anderson</h4>
-                            <span>Cardiology</span>
-                        </div>
-                    </div>
-                </div><!-- End Team Member -->
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
-                    <div class="team-member">
-                        <div class="member-img">
-                            <img src="{% static 'img/interpreters/interpreter4.jpg' %}" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter-x"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <h4>Amanda Jepson</h4>
-                            <span>Neurosurgeon</span>
-                        </div>
-                    </div>
-                </div><!-- End Team Member -->
+    </div>
 
-            </div>
+</section><!-- /Interpreters Section -->
 
-        </div>
-
-    </section><!-- /Doctors Section -->
 
 
     <!-- Faq Section -->

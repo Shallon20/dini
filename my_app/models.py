@@ -60,6 +60,13 @@ post_save.connect(create_profile, sender=User)
 from django.db import models
 
 class InterpreterApplication(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
@@ -68,9 +75,42 @@ class InterpreterApplication(models.Model):
     languages = models.TextField()
     cover_letter = models.TextField()
     resume = models.FileField(upload_to="media/")
+    profile_image = models.ImageField(upload_to='interpreters/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}- {self.status}"
+
+class EducationalResource(models.Model):
+    CATEGORY_CHOICES = [
+        ('sign-language', 'Sign Language'),
+        ('deaf-history', 'Deaf History'),
+        ('education', 'Education Materials'),
+    ]
+
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    file = models.FileField(upload_to='media/', blank=True, null=True)
+    image = models.ImageField(upload_to='media/', blank=True, null=True)
+    link = models.URLField(blank=True, null=True)  # For external resources
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return self.title
 
 
+class Interpretation(models.Model):
+    SERVICE_TYPE_CHOICES = [
+        ('physical', 'Physical Interpretation'),
+        ('virtual', 'Virtual Interpretation'),
+    ]
+
+    service_type = models.CharField(max_length=10, choices=SERVICE_TYPE_CHOICES, unique=True)
+    description = models.TextField()
+    image = models.ImageField(upload_to="media/")
+
+    def __str__(self):
+        return self.get_service_type_display()

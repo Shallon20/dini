@@ -1,0 +1,19 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <h2>My Applications</h2>
+    {% if applications %}
+        <ul class="list-group">
+            {% for app in applications %}
+                <li class="list-group-item">
+                    <strong>Applied on:</strong> {{ app.created_at }}<br>
+                    <strong>Status:</strong> {{ app.status }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No applications submitted yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

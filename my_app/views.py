@@ -1,14 +1,12 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import EmailMessage
-from my_app.forms import LoginForm, RegisterForm, UpdateUserForm, UserInfoForm, ChangePasswordForm, \
+from my_app.forms import \
     InterpreterApplicationForm, ContactForm, AppointmentForm, ApplicantRegistrationForm
-from my_app.models import Profile, Event, EducationalResource, InterpreterApplication, Interpretation
+from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation
 from django.conf import settings
-from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
 
 
@@ -117,7 +115,7 @@ def register_applicant(request):
         form = ApplicantRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Log the user in immediately after registration
+            login(request, user)
             messages.success(request, "Registration successful!")
             return redirect("dashboard")  # Redirect to applicant dashboard
     else:
@@ -145,6 +143,23 @@ def applicant_dashboard(request):
     applications = InterpreterApplication.objects.filter(user=request.user)
     return render(request, "dashboard.html", {"applications": applications})
 
+
+@login_required
+def edit_interpreter_profile(request):
+    try:
+        interpreter = InterpreterApplication.objects.get(user=request.user)
+    except InterpreterApplication.DoesNotExist:
+        interpreter = InterpreterApplication(user=request.user)
+
+    if request.method == 'POST':
+        form = InterpreterApplicationForm(request.POST, request.FILES, instance=interpreter)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = InterpreterApplicationForm(instance=interpreter)
+
+    return render(request, 'edit_interpreter_profile.html', {'form': form})
 def appointment(request):
     if request.method == 'POST':
         form = AppointmentForm(request.POST)

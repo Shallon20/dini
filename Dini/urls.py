@@ -32,6 +32,7 @@ urlpatterns = [
     path('interpretation', views.interpretation, name='interpretation'),
     path('job_application', views.job_application, name='job_application'),
     path('job_application_success', views.job_application_success, name='job_application_success'),
+path('edit-profile', views.edit_interpreter_profile, name='edit_interpreter_profile'),
     path('event_detail/<int:event_id>/', views.event_detail, name='event_detail'),
     path('past_events', views.past_events, name='past_events'),
     path('educational-resources', views.educational_resources, name='educational_resources'),

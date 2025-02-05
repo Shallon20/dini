@@ -2,7 +2,9 @@
 
 {% block content %}
 <div class="container py-5">
-    <h2>My Applications</h2>
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h2>My Applications</h2>
     {% if applications %}
         <ul class="list-group">
             {% for app in applications %}
@@ -10,10 +12,15 @@
                     <strong>Applied on:</strong> {{ app.created_at }}<br>
                     <strong>Status:</strong> {{ app.status }}
                 </li>
+                
             {% endfor %}
         </ul>
+        <a href="{% url 'edit_interpreter_profile' %}" class="btn btn-outline-secondary mt-3">Update Details</a>
     {% else %}
         <p>No applications submitted yet.</p>
     {% endif %}
+    </div>
+</div>
+    
 </div>
 {% endblock %}

@@ -37,6 +37,7 @@ path('edit-profile', views.edit_interpreter_profile, name='edit_interpreter_prof
     path('past_events', views.past_events, name='past_events'),
     path('educational-resources', views.educational_resources, name='educational_resources'),
     path('dashboard', views.applicant_dashboard, name='dashboard'),
+    path('comminity_group', views.community_group, name='community_group'),
     path('admin/', admin.site.urls),
 ]
 if settings.DEBUG:

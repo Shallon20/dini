@@ -122,3 +122,20 @@ class Interpretation(models.Model):
 
     def __str__(self):
         return self.get_service_type_display()
+
+class CommunityGroup(models.Model):
+    PLATFORM_CHOICES = [
+        ('whatsapp', 'WhatsApp'),
+        ('facebook', 'Facebook'),
+        ('instagram', 'Instagram'),
+        ('telegram', 'Telegram'),
+        ('other', 'Other')
+    ]
+
+    name = models.CharField(max_length=255)  # Group Name
+    link = models.URLField()  # Group Link
+    platform = models.CharField(max_length=20, choices=PLATFORM_CHOICES)  # Platform Type
+    created_at = models.DateTimeField(auto_now_add=True)  # Timestamp
+
+    def __str__(self):
+        return self.name

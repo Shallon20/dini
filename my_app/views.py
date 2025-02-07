@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import EmailMessage
 from my_app.forms import \
     InterpreterApplicationForm, ContactForm, AppointmentForm, ApplicantRegistrationForm
-from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation
+from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation, CommunityGroup
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
@@ -220,3 +220,8 @@ def past_events(request):
 def educational_resources(request):
     resources = EducationalResource.objects.all()
     return render(request, 'educational_resources.html', {'resources': resources})
+
+
+def community_group(request):
+    groups = CommunityGroup.objects.all()
+    return render(request, 'community.html', {'groups': groups})

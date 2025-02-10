@@ -139,19 +139,20 @@
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="{% url 'about' %}">About us</a></li>
                     <li><a href="#">Services</a></li>
-                    <li><a href="#">Terms of service</a></li>
-                    <li><a href="#">Privacy policy</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    <li><a href="{% url 'appointment' %}">Make Appointment</a></li>
                 </ul>
             </div>
 
             <div class="col-lg-2 col-md-3 footer-links">
                 <h4>Our Services</h4>
                 <ul>
-                    <li><a href="#">Virtual Interpreting</a></li>
-                    <li><a href="#">On-site Interpreting</a></li>
+                    <li><a href="{% url 'interpretation' %}">Virtual Interpreting</a></li>
+                    <li><a href="{% url 'interpretation' %}">On-site Interpreting</a></li>
                     <li><a href="{% url 'job_application' %}">Interpreter Jobs Offer</a></li>
-                    <li><a href="#">Community Platforms</a></li>
-                    <li><a href="#">Deaf Resources</a></li>
+                    <li><a href="{% url 'community_group' %}">Community Platforms</a></li>
+                    <li><a href="{% url 'educational_resources' %}">Educational Resources</a></li>
+                    <li><a href="{% url 'past_events' %}">Past Events</a></li>
                 </ul>
             </div>
 

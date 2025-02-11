@@ -4,12 +4,11 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import EmailMessage
 from my_app.forms import \
-    InterpreterApplicationForm, ContactForm, AppointmentForm, ApplicantRegistrationForm
+    InterpreterApplicationForm, ContactForm, AppointmentForm, ApplicantRegistrationForm, MpesaDonationForm
 from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation, CommunityGroup
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-
-
+from .mpesa_utils import stk_push_request
 # Create your views here.
 def home(request):
     events = Event.objects.filter(is_new=True).order_by('-date_created')
@@ -225,3 +224,29 @@ def educational_resources(request):
 def community_group(request):
     groups = CommunityGroup.objects.all()
     return render(request, 'community.html', {'groups': groups})
+
+
+def stk_push_request(amount, phone_number):
+    pass
+
+
+def mpesa_donate(request):
+    """Handle M-Pesa donation"""
+    if request.method == "POST":
+        form = MpesaDonationForm(request.POST)
+        if form.is_valid():
+            phone_number = form.cleaned_data["phone_number"]
+            amount = form.cleaned_data["amount"]
+
+            response = stk_push_request(amount, phone_number)
+
+            if response.get("ResponseCode") == "0":
+                messages.success(request, "STK Push sent! Please complete the payment on your phone.")
+            else:
+                messages.error(request, "Failed to send STK Push. Try again.")
+
+            return redirect("mpesa_donate")
+    else:
+        form = MpesaDonationForm()
+
+    return render(request, "mpesa_donate.html", {"form": form})

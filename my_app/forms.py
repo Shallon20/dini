@@ -96,3 +96,16 @@ class AppointmentForm(forms.Form):
         widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter details including location or link', 'rows': 5}),
         required=False
     )
+
+class MpesaDonationForm(forms.Form):
+    phone_number = forms.CharField(
+        label="Phone Number",
+        max_length=12,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '2547XXXXXXXX'}),
+    )
+    amount = forms.DecimalField(
+        label="Amount (KES)",
+        max_digits=10,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter Amount'}),
+    )

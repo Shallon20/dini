@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="678a464f-7e06-4f5c-be25-66d49a85a0e4" name="Changes" comment="Email messaging on contact us page">
+      <change afterPath="$PROJECT_DIR$/my_app/mpesa_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/mpesa_donate.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/master.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dini/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dini/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/static/scss/Readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/static/vendor/php-email-form/validate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/community.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/community.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +23,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -152,7 +159,9 @@
       <workItem from="1738928229268" duration="2897000" />
       <workItem from="1739030616496" duration="1202000" />
       <workItem from="1739132844220" duration="48000" />
-      <workItem from="1739210403368" duration="1347000" />
+      <workItem from="1739210403368" duration="1983000" />
+      <workItem from="1739273756663" duration="4816000" />
+      <workItem from="1739287187710" duration="1208000" />
     </task>
     <servers />
   </component>

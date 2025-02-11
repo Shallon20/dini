@@ -38,6 +38,7 @@ path('edit-profile', views.edit_interpreter_profile, name='edit_interpreter_prof
     path('educational-resources', views.educational_resources, name='educational_resources'),
     path('dashboard', views.applicant_dashboard, name='dashboard'),
     path('comminity_group', views.community_group, name='community_group'),
+    path('mpesa_donate', views.mpesa_donate, name='mpesa_donate'),
     path('admin/', admin.site.urls),
 ]
 if settings.DEBUG:

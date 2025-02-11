@@ -6,34 +6,47 @@
 {% endblock %}
 
 {% block content %}
-<section class="container mt-5">
-    <h2 class="text-center">Join Our Community</h2>
-    <p class="text-center">Connect with other members through our community groups.</p>
+    <section class="container mt-5">
+        <h2 class="text-center">Join Our Community</h2>
+        <p class="text-center">Connect with other members through our community groups.</p>
 
-    <div class="mt-4">
-        <h3 class="text-center">Community Groups</h3>
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <ul class="list-group">
-                    {% for group in groups %}
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                           <span>{{ group.platform }}</span>{{ group.name }}
-                            <a href="{{ group.link }}" class="btn btn-sm 
+        <div class="mt-4">
+            <h3 class="text-center">Community Groups</h3>
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <ul class="list-group">
+                        {% for group in groups %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>{{ group.platform }}</span>{{ group.name }}
+                                <a href="{{ group.link }}" class="btn btn-sm 
                                 {% if group.platform == 'whatsapp' %}btn-success
                                 {% elif group.platform == 'facebook' %}btn-success
                                 {% elif group.platform == 'instagram' %}btn-success
                                 {% elif group.platform == 'telegram' %}btn-success
                                 {% else %}btn-success{% endif %}"
-                               target="_blank">
-                                Join Now
-                            </a>
-                        </li>
-                    {% empty %}
-                        <p class="text-center text-muted">No community groups available.</p>
-                    {% endfor %}
-                </ul>
+                                   target="_blank">
+                                    Join Now
+                                </a>
+                            </li>
+                        {% empty %}
+                            <p class="text-center text-muted">No community groups available.</p>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Donation Section -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="text-center mt-5">Support the Deaf Community</h3>
+                <p class="text-center">Your donation helps us fund activities, food, and other support services.</p>
+
+                <div class="text-center">
+                    <a href="{% url 'mpesa_donate' %}" class="btn btn-success btn-lg">Donate via M-Pesa</a>
+                </div>
             </div>
         </div>
     </div>
-</section>
 {% endblock %}

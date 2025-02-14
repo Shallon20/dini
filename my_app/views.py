@@ -225,11 +225,6 @@ def community_group(request):
     groups = CommunityGroup.objects.all()
     return render(request, 'community.html', {'groups': groups})
 
-
-def stk_push_request(amount, phone_number):
-    pass
-
-
 def mpesa_donate(request):
     """Handle M-Pesa donation"""
     if request.method == "POST":

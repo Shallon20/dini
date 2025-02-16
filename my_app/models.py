@@ -11,7 +11,7 @@ class Event(models.Model):
     long_description = models.TextField(max_length=500, default=True)
     image = models.ImageField(upload_to='media/')
     date_created = models.DateTimeField(auto_now_add=True)
-    is_new = models.BooleanField(default=True)
+    is_new = models.BooleanField(default=True, db_index=True)
 
     def __str__(self):
         return self.title

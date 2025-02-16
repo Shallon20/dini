@@ -20,7 +20,6 @@ from django.template.context_processors import static
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -31,7 +30,6 @@ SECRET_KEY = 'django-insecure-i-mhm8u+&y4psf_simvdukwoley*+qn2(8sz*5h7_s2p%nke-x
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -79,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Dini.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -90,7 +87,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -100,12 +96,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {'min_length': 8},
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+    {
+        'NAME': 'my_app.validators.StrongPasswordValidator',
     },
 ]
 
@@ -121,13 +121,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 GOOGLE_MAPS_API_KEY = config('GOOGLE_MAPS_API_KEY')
-
-
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static_files'
@@ -167,9 +164,6 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # Your Gmail address
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Your app password
 DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')  # Default sender address
 
-
 # go to myaccount.google.com/lesssecureapps
 # https://accounts.google.com/DisplayUnlockCaptcha
 # myaccount.google.com/apppasswords
-
-

@@ -167,3 +167,12 @@ DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')  # Default sender address
 # go to myaccount.google.com/lesssecureapps
 # https://accounts.google.com/DisplayUnlockCaptcha
 # myaccount.google.com/apppasswords
+
+
+# M-Pesa API Credentials
+CONSUMER_KEY = config('CONSUMER_KEY')
+CONSUMER_SECRET = config('CONSUMER_SECRET')
+SHORTCODE = config('SHORTCODE')
+PASSKEY = config('PASSKEY')
+CALLBACK_URL = "https://de77-102-212-236-130.ngrok-free.app"
+RECEIVING_PHONE_NUMBER = config('RECEIVING_PHONE_NUMBER')

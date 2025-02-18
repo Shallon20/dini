@@ -1,53 +1,69 @@
-import requests
-from decouple import config
-from requests.auth import HTTPBasicAuth
-import datetime
 import base64
 import json
+from decimal import Decimal
 
-# M-Pesa API Credentials (Get these from Safaricom Developer Portal)
-CONSUMER_KEY = config('CONSUMER_KEY')
-CONSUMER_SECRET = config('CONSUMER_SECRET')
-SHORTCODE = config('SHORTCODE')
-PASSKEY = config('PASSKEY')
-CALLBACK_URL = "https://de77-102-212-236-130.ngrok-free.app"
-RECEIVING_PHONE_NUMBER = config('RECEIVING_PHONE_NUMBER')
+import requests
+from django.conf import settings
+from django.http import JsonResponse
 
 
-def generate_access_token():
-    """Generate M-Pesa access token"""
-    auth_url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
-    response = requests.get(auth_url, auth=HTTPBasicAuth(CONSUMER_KEY, CONSUMER_SECRET))
-    return response.json()["access_token"]
+def get_mpesa_access_token():
+    api_url = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
 
+    # Encode your credentials
+    api_credentials = f"{settings.CONSUMER_KEY}:{settings.CONSUMER_SECRET}"
+    api_key_secret = base64.b64encode(api_credentials.encode()).decode('utf-8')
 
-def stk_push_request(amount, donor_phone):
-    """Send STK Push request to donor's phone"""
-    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    password = base64.b64encode((SHORTCODE + PASSKEY + timestamp).encode()).decode()
-
-    access_token = generate_access_token()
-    headers = {"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"}
-
-    amount = int(amount)
-
-    stk_payload = {
-        "BusinessShortCode": SHORTCODE,
-        "Password": password,
-        "Timestamp": timestamp,
-        "TransactionType": "CustomerPayBillOnline",
-        "Amount": amount,
-        "PartyA": donor_phone,
-        "PartyB": SHORTCODE,
-        "PhoneNumber": donor_phone,  # The donor’s phone number
-        "CallBackURL": CALLBACK_URL,
-        "AccountReference": "DINIDONATION",
-        "TransactionDesc": "Donation for Deaf Community"
+    headers = {
+        'Authorization': f'Basic {api_key_secret}'
     }
 
-    stk_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
-    response = requests.post(stk_url, json=stk_payload, headers=headers)
+    response = requests.get(api_url, headers=headers)
 
-    return response.json()
+    if response.status_code == 200:
+        access_token = response.json()['access_token']
+        return access_token
+    else:
+        return None
 
 
+def initiate_mpesa_payment(phone_number, amount):
+    # Convert Decimal to float if amount is a Decimal object
+    if isinstance(amount, Decimal):
+        amount = float(amount)
+
+    access_token = get_mpesa_access_token()
+
+    if access_token is None:
+        return JsonResponse({"message": "Failed to get access token"}, status=500)
+
+    # Prepare the payload for STK Push request
+    api_url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest'
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json'
+    }
+
+    payload = {
+        "BusinessShortCode": settings.SHORTCODE,
+        "Password": settings.PASSKEY,
+        "Shortcode": settings.SHORTCODE,
+        "LipaNaMpesaOnlineShortcode": settings.SHORTCODE,
+        "PhoneNumber": phone_number,
+        "Amount": amount,
+        "AccountReference": "Donation",
+        "TransactionDesc": "Charity Donation",
+        "Remarks": "Donation Payment",
+        "TransactionType": "PayBill",
+        "Initiator": "Test",  # Replace this with your actual initiator name
+        "SecurityCredential": "your_security_credential",  # Replace with your security credential
+        "RequestCode": "Donation Payment",
+        "CallbackURL": settings.CALLBACK_URL
+    }
+
+    response = requests.post(api_url, data=json.dumps(payload), headers=headers)
+
+    if response.status_code == 200:
+        return JsonResponse({"message": "STK Push request sent successfully!"}, status=200)
+    else:
+        return JsonResponse({"message": "Failed to initiate payment"}, status=500)

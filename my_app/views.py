@@ -1,14 +1,29 @@
+import logging
+
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import EmailMessage
+from django.views.decorators.csrf import csrf_exempt
+
 from my_app.forms import \
     InterpreterApplicationForm, ContactForm, AppointmentForm, ApplicantRegistrationForm, MpesaDonationForm
 from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation, CommunityGroup
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from .mpesa_utils import stk_push_request
+
+from .mpesa_utils import get_mpesa_access_token
+from django.http import JsonResponse
+from django.http import HttpResponse
+from .mpesa_utils import initiate_mpesa_payment
+from .sign_recognition import process_webcam
+import cv2
+import mediapipe as mp
+import numpy as np
+
+
 # Create your views here.
 def home(request):
     events = Event.objects.filter(is_new=True).order_by('-date_created')
@@ -18,6 +33,7 @@ def home(request):
 def about(request):
     interpreters = InterpreterApplication.objects.filter(status='approved')
     return render(request, 'about-us.html', {'interpreters': interpreters})
+
 
 def contact(request):
     if request.method == 'POST':
@@ -109,6 +125,7 @@ def job_application(request):
 def job_application_success(request):
     return render(request, 'job_application_success.html')
 
+
 def register_applicant(request):
     if request.method == "POST":
         form = ApplicantRegistrationForm(request.POST)
@@ -120,6 +137,7 @@ def register_applicant(request):
     else:
         form = ApplicantRegistrationForm()
     return render(request, "register.html", {"form": form})
+
 
 def login_applicant(request):
     if request.method == "POST":
@@ -133,9 +151,11 @@ def login_applicant(request):
         form = AuthenticationForm()
     return render(request, "login.html", {"form": form})
 
+
 def user_logout(request):
     logout(request)
     return redirect('home')
+
 
 @login_required
 def applicant_dashboard(request):
@@ -159,6 +179,8 @@ def edit_interpreter_profile(request):
         form = InterpreterApplicationForm(instance=interpreter)
 
     return render(request, 'edit_interpreter_profile.html', {'form': form})
+
+
 def appointment(request):
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
@@ -202,6 +224,8 @@ def appointment(request):
         form = AppointmentForm()
 
     return render(request, 'appointment.html', {'form': form})
+
+
 def event_detail(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     return render(request, 'event_detail.html', {'event': event})
@@ -210,6 +234,7 @@ def event_detail(request, event_id):
 def interpretation(request):
     services = Interpretation.objects.all()
     return render(request, 'interpretation.html', {'services': services})
+
 
 def past_events(request):
     events = Event.objects.filter(is_new=False)  # Get past events
@@ -225,23 +250,57 @@ def community_group(request):
     groups = CommunityGroup.objects.all()
     return render(request, 'community.html', {'groups': groups})
 
+
+@csrf_exempt  # If you're using ngrok or testing locally, you may need to disable CSRF for testing.
 def mpesa_donate(request):
-    """Handle M-Pesa donation"""
-    if request.method == "POST":
-        form = MpesaDonationForm(request.POST)
-        if form.is_valid():
-            phone_number = form.cleaned_data["phone_number"]
-            amount = form.cleaned_data["amount"]
-
-            response = stk_push_request(amount, phone_number)
-
-            if response.get("ResponseCode") == "0":
-                messages.success(request, "STK Push sent! Please complete the payment on your phone.")
-            else:
-                messages.error(request, "Failed to send STK Push. Try again.")
-
-            return redirect("mpesa_donate")
+    if request.method == 'POST':
+        phone_number = request.POST.get('phone_number')
+        amount = request.POST.get('amount')
+        # Proceed with the rest of your logic
+        # Validate the data and process the M-Pesa payment
+        return HttpResponse("Donation successful")
     else:
-        form = MpesaDonationForm()
+        return HttpResponse("Invalid method. Please submit via POST.", status=405)
 
-    return render(request, "mpesa_donate.html", {"form": form})
+
+def mpesa_callback(request):
+    if request.method == 'POST':
+        # Get the response from M-Pesa
+        response_data = request.POST
+        # Log or process the response as needed (e.g., save payment status to the database)
+        print(response_data)
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "failed"}, status=400)
+
+
+def process_image(request):
+    """ Process uploaded images for hand detection """
+    if request.method == "POST" and request.FILES.get('image'):
+        image = request.FILES['image']
+        img_array = np.asarray(bytearray(image.read()), dtype=np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+        with mp_hands.Hands(static_image_mode=True) as hands:
+            results = hands.process(img_rgb)
+            if results.multi_hand_landmarks:
+                for hand_landmarks in results.multi_hand_landmarks:
+                    mp_drawing.draw_landmarks(img, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+
+        cv2.imwrite("processed_image.jpg", img)
+        return JsonResponse({"message": "Image processed successfully!"})
+
+    return JsonResponse({"error": "No image uploaded."})
+
+
+def process_live(request):
+    """ Run live webcam processing """
+    process_webcam()
+    return JsonResponse({"message": "Webcam started."})
+def sign_video(request):
+    """ Renders the main page with upload/live options """
+    return render(request, 'sign_video.html')
+
+
+

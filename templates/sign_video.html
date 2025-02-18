@@ -1,0 +1,17 @@
+{% extends 'master.html' %}
+{% block title %}
+    <title>Video</title>
+{% endblock %}
+{% block content %}
+    <h1>Sign Language Recognition</h1>
+    <form action="{% url 'process_image' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image">
+        <button type="submit">Upload Image</button>
+    </form>
+
+    <form action="{% url 'process_live' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Start Live Webcam</button>
+    </form>
+{% endblock %}

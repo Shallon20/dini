@@ -56,9 +56,6 @@ def create_profile(sender, instance, created, **kwargs):
     # Automate the profile
 post_save.connect(create_profile, sender=User)
 
-
-from django.db import models
-
 class InterpreterApplication(models.Model):
     STATUS_CHOICES = [
         ('pending', 'Pending'),

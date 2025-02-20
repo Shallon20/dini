@@ -1,94 +1,71 @@
+import os
+# Force TensorFlow to use GPU
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+import tensorflow as tf
+import numpy as np
 import cv2
 import mediapipe as mp
-import os
+from collections import deque
+from django.http import JsonResponse
 
-# Initialize MediaPipe Hands
-mp_drawing = mp.solutions.drawing_utils
-mp_drawing_styles = mp.solutions.drawing_styles
+# Load trained model
+model = tf.keras.models.load_model("sign_model.h5")
+
+# MediaPipe Hands
 mp_hands = mp.solutions.hands
+mp_drawing = mp.solutions.drawing_utils
 
-# ---------------------- Static Image Processing ----------------------
-def process_static_image(image_path):
-    """Processes a single image for hand landmarks."""
-    if not os.path.exists(image_path):
-        print("⚠️ Image not found!")
-        return None
+# Queue for storing recognized words
+sentence_queue = deque(maxlen=10)  # Store last 10 words for fluid translation
 
-    image = cv2.imread(image_path)
-    image = cv2.flip(image, 1)  # Flip for correct orientation
-    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+def process_frame(frame):
+    """Process a single frame for hand landmarks and predict sign language."""
+    image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    results = hands.process(image_rgb)
 
-    with mp_hands.Hands(
-        static_image_mode=True,  # Static mode enabled
-        max_num_hands=2,
-        min_detection_confidence=0.5
-    ) as hands:
-        results = hands.process(image_rgb)
+    if results.multi_hand_landmarks:
+        image_height, image_width, _ = frame.shape
+        for hand_landmarks in results.multi_hand_landmarks:
+            # Extract hand landmark coordinates (x, y only) → 21 landmarks * 2 = 42 features
+            landmark_data = np.array([[lm.x, lm.y] for lm in hand_landmarks.landmark]).flatten().reshape(1, -1)
 
-        if results.multi_hand_landmarks:
-            for hand_landmarks in results.multi_hand_landmarks:
-                mp_drawing.draw_landmarks(
-                    image, hand_landmarks, mp_hands.HAND_CONNECTIONS,
-                    mp_drawing_styles.get_default_hand_landmarks_style(),
-                    mp_drawing_styles.get_default_hand_connections_style()
-                )
-        cv2.imshow("Processed Image", image)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+            # Ensure correct shape for prediction
+            print(f"Input Shape for Prediction: {landmark_data.shape}")  # Debugging
 
-# ---------------------- Live Webcam Processing ----------------------
-def process_webcam():
-    """Processes real-time webcam input for hand landmarks."""
-    cap = cv2.VideoCapture(0)
+            if landmark_data.shape[1] != 42:
+                print(f"⚠️ ERROR: Incorrect input shape {landmark_data.shape}. Expected (1, 42).")
+                return ""
 
-    with mp_hands.Hands(
-        model_complexity=0,
-        min_detection_confidence=0.5,
-        min_tracking_confidence=0.5
-    ) as hands:
-        while cap.isOpened():
-            success, image = cap.read()
-            if not success:
-                print("⚠️ Ignoring empty camera frame.")
-                continue
+            # Predict sign
+            prediction = model.predict(landmark_data)
+            predicted_label = np.argmax(prediction)
 
-            # Convert the image to RGB for processing
-            image.flags.writeable = False
-            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-            results = hands.process(image)
+            # Convert label to text (adjust based on your dataset)
+            label_map = {0: "hello", 1: "yes", 2: "no", 3: "thank you", 4: "please"}
+            word = label_map.get(predicted_label, "")
 
-            # Convert back to BGR for OpenCV display
-            image.flags.writeable = True
-            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            if word:
+                sentence_queue.append(word)  # Add word to sentence queue
 
-            # Draw landmarks if detected
-            if results.multi_hand_landmarks:
-                for hand_landmarks in results.multi_hand_landmarks:
-                    mp_drawing.draw_landmarks(
-                        image, hand_landmarks, mp_hands.HAND_CONNECTIONS,
-                        mp_drawing_styles.get_default_hand_landmarks_style(),
-                        mp_drawing_styles.get_default_hand_connections_style()
-                    )
+    return " ".join(sentence_queue)  # Return continuous sentence
 
-            # Flip image for selfie-view
-            cv2.imshow("AI Sign Recognition", cv2.flip(image, 1))
+# Start real-time sign recognition
+cap = cv2.VideoCapture(0)
+with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands:
+    while cap.isOpened():
+        success, frame = cap.read()
+        if not success:
+            continue
 
-            if cv2.waitKey(5) & 0xFF == 27:  # Press "Esc" to exit
-                break
+        # Get translated sentence
+        translated_text = process_frame(frame)
 
-    cap.release()
-    cv2.destroyAllWindows()
+        # Display result on OpenCV window
+        cv2.putText(frame, translated_text, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+        cv2.imshow("Sign Language Translator", frame)
 
-# ---------------------- Run Mode Selection ----------------------
-if __name__ == "__main__":
-    mode = input("Enter 'live' for webcam or 'image' for static image processing: ")
+        if cv2.waitKey(5) & 0xFF == 27:
+            break
 
-    if mode == "live":
-        print("🎥 Starting Live Webcam Mode...")
-        process_webcam()
-    elif mode == "image":
-        image_path = input("Enter the image path: ")
-        print(f"📸 Processing Image: {image_path} ...")
-        process_static_image(image_path)
-    else:
-        print("⚠️ Invalid option. Please enter 'live' or 'image'.")
+cap.release()
+cv2.destroyAllWindows()

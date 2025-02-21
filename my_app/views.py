@@ -13,24 +13,15 @@ from my_app.forms import \
 from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation, CommunityGroup
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-
-from .mpesa_utils import get_mpesa_access_token
 from django.http import JsonResponse
 from django.http import HttpResponse
-from .mpesa_utils import initiate_mpesa_payment
-from .sign_recognition import mp_hands, mp_drawing
-import cv2
-import mediapipe as mp
-import numpy as np
-from collections import deque
 import os
-import sys
+import cv2
+import numpy as np
 import tensorflow as tf
+from .sign_recognition import process_frame
+from .data_collection import process_uploaded_file
 
-
-# Disable TensorFlow during migrations
-if "migrate" in sys.argv or "makemigrations" in sys.argv:
-    os.environ["DISABLE_TF"] = "1"
 
 # Create your views here.
 def home(request):
@@ -284,94 +275,43 @@ def mpesa_callback(request):
 
 
 
-def process_image(request):
-    """ Process uploaded images for hand detection """
-    if request.method == "POST" and request.FILES.get('image'):
-        image = request.FILES['image']
-        img_array = np.asarray(bytearray(image.read()), dtype=np.uint8)
-        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-        with mp_hands.Hands(static_image_mode=True) as hands:
-            results = hands.process(img_rgb)
-            if results.multi_hand_landmarks:
-                for hand_landmarks in results.multi_hand_landmarks:
-                    mp_drawing.draw_landmarks(img, hand_landmarks, mp_hands.HAND_CONNECTIONS)
-
-        cv2.imwrite("media/processed_image.jpg", img)
-        return JsonResponse({"message": "Image processed successfully!", "image_url": "/media/processed_image.jpg"})
-
-    return JsonResponse({"error": "No image uploaded."})
-
-# Only load the model when needed
-model = None
-def get_model():
-    """Load the model only when needed, but disable it during migrations."""
-    global model
-    if os.environ.get("DISABLE_TF") == "1":
-        return None  # Don't load the model during migrations
-
-    if model is None:
-        model = tf.keras.models.load_model("sign_model.h5")
-    return model
-
-
-
-# Initialize MediaPipe Hands
-mp_hands = mp.solutions.hands
-mp_drawing = mp.solutions.drawing_utils
-sentence_queue = deque(maxlen=10)  # Store the last 10 words
-
-def process_live(request):
-    model = get_model()
-    """ Stream real-time sign recognition """
-    def generate_frames():
-        cap = cv2.VideoCapture(0)
-        with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands:
-            while True:
-                success, frame = cap.read()
-                if not success:
-                    break
-
-                # Convert BGR to RGB for Mediapipe
-                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                results = hands.process(frame_rgb)
-
-                if results.multi_hand_landmarks:
-                    for hand_landmarks in results.multi_hand_landmarks:
-                        # Extract hand landmark coordinates
-                        landmark_data = np.array(
-                            [[lm.x, lm.y, lm.z] for lm in hand_landmarks.landmark]
-                        ).flatten().reshape(1, -1)
-
-                        # Predict sign
-                        prediction = model.predict(landmark_data)
-                        predicted_label = np.argmax(prediction)
-
-                        # Convert label to text
-                        label_map = {0: "hello", 1: "yes", 2: "no", 3: "thank you", 4: "please"}
-                        word = label_map.get(predicted_label, "")
-
-                        if word:
-                            sentence_queue.append(word)  # Add word to sentence queue
-
-                # Construct translated sentence
-                translated_sentence = " ".join(sentence_queue)
-
-                # Encode the frame to JPEG
-                _, buffer = cv2.imencode('.jpg', frame)
-                frame = buffer.tobytes()
-
-                yield (b'--frame\r\n'
-                       b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-
-        cap.release()
-
-    return StreamingHttpResponse(generate_frames(), content_type="multipart/x-mixed-replace; boundary=frame")
-
-
-def get_translated_text(request):
-    """ API endpoint to get the latest translated sentence """
-    return JsonResponse({"translated_sentence": " ".join(sentence_queue)})
 def sign_video(request):
     return render(request, 'sign_video.html')
+
+def upload_training_data(request):
+    """Admin uploads videos/images for training data collection"""
+    if request.method == 'POST' and request.FILES.get['file']:
+        file = request.FILES['file']
+        filepath = os.path.join("uploads", file.name)
+
+        with open(filepath, 'wb+') as destination:
+            for chunk in file.chunks():
+                destination.write(chunk)
+
+        label = request.POST.get("label", "unknown") # default label if not provided
+        process_uploaded_file(filepath, label)
+
+        return JsonResponse({"message": f"Processed {file.name} as {label}"})
+    return render(request, 'upload.html')
+
+def process_live_translation(request):
+    """Real-time sign language to text translation"""
+    cap = cv2.VideoCapture(0)
+    translated_text = ""
+
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
+
+        translated_text = process_frame(frame)
+        if translated_text:
+            break
+
+    cap.release()
+    return JsonResponse({"translated_sentence": translated_text})
+
+
+def upload(request):
+    return render(request, 'upload.html')

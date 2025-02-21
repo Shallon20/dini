@@ -41,10 +41,10 @@ urlpatterns = [
     path('mpesa_donate/', views.mpesa_donate, name='mpesa_donate'),
     path('callback/', views.mpesa_callback, name='mpesa_callback'),
 
-    path('process-image/', views.process_image, name='process_image'),
-    path('process-live/', views.process_live, name='process_live'),
+    path('process-live_translation/', views.process_live_translation, name='process_live_translation'),
+    path('upload/', views.upload, name='upload'),
     path('sign_video/', views.sign_video, name='sign_video'),
-    path("get-translation/", views.get_translated_text, name="get_translated_text"),
+    path("upload_training_data/", views.upload_training_data, name="upload_training_data"),
     path('admin/', admin.site.urls),
 ]
 if settings.DEBUG:

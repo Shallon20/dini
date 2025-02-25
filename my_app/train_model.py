@@ -6,7 +6,8 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 
 # Load Dataset
-df = pd.read_csv("sign_data.csv")
+DATA_FILE = "sign_data.csv"
+df = pd.read_csv(DATA_FILE)
 
 # Prepare Data
 X = df.drop(columns=["label"]).values  # Landmark coordinates

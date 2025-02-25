@@ -4,13 +4,13 @@ import numpy as np
 import csv
 import os
 
-
 # Initialize MediaPipe Hands
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 
 # Define labels for sign gestures
-GESTURES = ["hello", "yes", "no", "thanks", "stop"]
+file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "uploads"))
+
 DATA_FILE = "sign_data.csv"
 
 # Create CSV file for dataset if not exists
@@ -20,59 +20,51 @@ if not os.path.exists(DATA_FILE):
         writer.writerow(["label"] + [f"x{i}" for i in range(21)] + [f"y{i}" for i in range(21)])
 
 
-def collect_data():
-    cap = cv2.VideoCapture(0)
+def process_uploaded_file(filepath, label):
+    """Extract hand landmarks from an uploaded video/image and save to CSV"""
+    full_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "uploads", os.path.basename(filepath)))
+    print(f"Checking file path: {os.path.abspath(full_path)}") # debugging
+    cap = cv2.VideoCapture(full_path)
+    if not cap.isOpened():
+        print(f"ERROR: Could not open video file {filepath}")
+        return
 
-    with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands:
-        for gesture in GESTURES:
-            print(f"📸 Collecting data for: {gesture}. Press 's' to start recording, 'q' to quit.")
-            while True:
-                ret, frame = cap.read()
-                if not ret:
-                    break
+    with mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.5) as hands:
+        frame_count = 0  # Track number of processed frames
+        while cap.isOpened():
+            ret, frame = cap.read()
+            if not ret:
+                break
 
-                # Convert image to RGB
-                image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                results = hands.process(image)
+            # Convert image to RGB
+            image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            results = hands.process(image_rgb)
 
-                # Draw hand landmarks
-                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-                if results.multi_hand_landmarks:
-                    for hand_landmarks in results.multi_hand_landmarks:
-                        mp_drawing.draw_landmarks(image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
-
-                cv2.putText(image, f"Gesture: {gesture}", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-                cv2.imshow("Collecting Sign Data", image)
-
-                key = cv2.waitKey(1)
-                if key == ord('s'):
-                    print(f"✏️ Recording data for {gesture}...")
-                    for _ in range(100):  # Collect 100 samples per gesture
-                        ret, frame = cap.read()
-                        if not ret:
-                            break
-
-                        image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                        results = hands.process(image)
-
-                        if results.multi_hand_landmarks:
-                            for hand_landmarks in results.multi_hand_landmarks:
-                                landmark_list = []
-                                for landmark in hand_landmarks.landmark:
-                                    landmark_list.append(landmark.x)
-                                    landmark_list.append(landmark.y)
-
-                                # Save landmark data to CSV
-                                with open(DATA_FILE, "a", newline="") as file:
-                                    writer = csv.writer(file)
-                                    writer.writerow([gesture] + landmark_list)
-
-                elif key == ord('q'):
-                    break
-
+            # Extract hand landmarks
+            if results.multi_hand_landmarks:
+                frame_count += 1  # Count frames with detected hands
+                for hand_landmarks in results.multi_hand_landmarks:
+                    landmark_list = []
+                    for landmark in hand_landmarks.landmark:
+                        landmark_list.append([landmark.x])
+                        landmark_list.append([landmark.y])
+                    print(f"Saving frame {frame_count} from {filepath}")  # Debugging output
+                    # Save data to CSV
+                    with open(DATA_FILE, "a", newline="") as file:
+                        writer = csv.writer(file)
+                        writer.writerow([label] + [coord for landmark in landmark_list for coord in landmark])
+        print(f"{frame_count} frames processed from {filepath}")
     cap.release()
-    cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":
-    collect_data()
+    print("Place your vidoes/images in 'uploads/ folder and run this script")
+    UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), "uploads")
+    for filename in os.listdir(UPLOAD_FOLDER):
+        if filename.endswith((".mp4", ".jpg", "png")):
+            label = input(f"Enter label for {filename}: ")
+            process_uploaded_file(os.path.join("uploads/", filename), label)
+            print(f"Processed {filename}")
+        if not os.path.exists(UPLOAD_FOLDER):
+            print("🚨 ERROR: 'uploads/' folder does not exist! Creating it now...")
+            os.makedirs(UPLOAD_FOLDER)

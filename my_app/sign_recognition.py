@@ -1,4 +1,6 @@
 import os
+import sys
+
 import tensorflow as tf
 import numpy as np
 import cv2
@@ -9,8 +11,22 @@ from django.http import JsonResponse
 # force TensorFlow to use GPU if available
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
-# Load trained model
-model = tf.keras.models.load_model("sign_model.h5")
+# Get the model path dynamically
+MODEL_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "sign_model.h5"))
+
+
+# Load model only if it exists
+if os.path.exists(MODEL_PATH):
+    try:
+        model = tf.keras.models.load_model(MODEL_PATH)
+    except Exception as e:
+        print(f"⚠️ ERROR: Unable to load model: {e}")
+        model = None  # Prevent crashing
+else:
+    print("⚠️ ERROR: sign_model.h5 not found!")
+    model = None  # Prevent crashing
+
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 # MediaPipe Hands
 mp_hands = mp.solutions.hands

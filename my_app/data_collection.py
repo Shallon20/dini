@@ -66,5 +66,5 @@ if __name__ == "__main__":
             process_uploaded_file(os.path.join("uploads/", filename), label)
             print(f"Processed {filename}")
         if not os.path.exists(UPLOAD_FOLDER):
-            print("🚨 ERROR: 'uploads/' folder does not exist! Creating it now...")
+            print("ERROR: 'uploads/' folder does not exist! Creating it now...")
             os.makedirs(UPLOAD_FOLDER)

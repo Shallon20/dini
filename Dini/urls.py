@@ -42,9 +42,10 @@ urlpatterns = [
     path('callback/', views.mpesa_callback, name='mpesa_callback'),
 
     path('process-live_translation/', views.process_live_translation, name='process_live_translation'),
+    path("get_translated_text/", views.get_translated_text, name="get_translated_text"),
     path('upload/', views.upload, name='upload'),
     path('sign_video/', views.sign_video, name='sign_video'),
-    path("upload_training_data/", views.upload_training_data, name="upload_training_data"),
+    # path("upload_training_data/", views.upload_training_data, name="upload_training_data"),
     path('admin/', admin.site.urls),
 ]
 if settings.DEBUG:

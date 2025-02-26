@@ -13,12 +13,14 @@ from my_app.forms import \
 from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation, CommunityGroup
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
 from django.http import HttpResponse
 import os
 import cv2
 import numpy as np
 import tensorflow as tf
+import mediapipe as mp
+import pandas as pd
+from collections import deque
 from .sign_recognition import process_frame
 from .data_collection import process_uploaded_file
 
@@ -274,44 +276,100 @@ def mpesa_callback(request):
 
 
 
+# Load the trained model
+MODEL_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "sign_model.h5"))
+
+if os.path.exists(MODEL_PATH):
+    model = tf.keras.models.load_model(MODEL_PATH)
+else:
+    model = None  # Prevent crashing if model is missing
+    print("ERROR: Model file not found!")
+
+# Load labels dynamically from the dataset
+CSV_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "sign_data.csv"))
+
+if os.path.exists(CSV_PATH):
+    df = pd.read_csv(CSV_PATH)
+    unique_labels = sorted(df["label"].unique())  # Get unique labels in sorted order
+    label_map = {i: label for i, label in enumerate(unique_labels)}
+    print(f"Loaded labels from dataset: {label_map}")  # Debugging output
+else:
+    label_map = {}  # Empty fallback if CSV is missing
+    print("ERROR: sign_data.csv not found!")
+
+
+# Initialize MediaPipe Hands
+mp_hands = mp.solutions.hands
+hands = mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5)
+
+# Store translated text
+sentence_queue = deque(maxlen=3)  # Store last 10 words
+translated_text = ""  # Stores the last detected sentence
 
 
 def sign_video(request):
     return render(request, 'sign_video.html')
-
-def upload_training_data(request):
-    """Admin uploads videos/images for training data collection"""
-    if request.method == 'POST' and request.FILES.get['file']:
-        file = request.FILES['file']
-        filepath = os.path.join("uploads", file.name)
-
-        with open(filepath, 'wb+') as destination:
-            for chunk in file.chunks():
-                destination.write(chunk)
-
-        label = request.POST.get("label", "unknown") # default label if not provided
-        process_uploaded_file(filepath, label)
-
-        return JsonResponse({"message": f"Processed {file.name} as {label}"})
-    return render(request, 'upload.html')
+#
+# def upload_training_data(request):
+#     """Admin uploads videos/images for training data collection"""
+#     if request.method == 'POST' and request.FILES.get['file']:
+#         file = request.FILES['file']
+#         filepath = os.path.join("uploads", file.name)
+#
+#         with open(filepath, 'wb+') as destination:
+#             for chunk in file.chunks():
+#                 destination.write(chunk)
+#
+#         label = request.POST.get("label", "unknown") # default label if not provided
+#         process_uploaded_file(filepath, label)
+#
+#         return JsonResponse({"message": f"Processed {file.name} as {label}"})
+#     return render(request, 'upload.html')
 
 def process_live_translation(request):
-    """Real-time sign language to text translation"""
-    cap = cv2.VideoCapture(0)
-    translated_text = ""
+    return StreamingHttpResponse(generate_frames(), content_type="multipart/x-mixed-replace; boundary=frame")
+
+# Function to capture and process video frames
+def generate_frames():
+    global translated_text  # Allow function to update translation globally
+    cap = cv2.VideoCapture(0)  # Open webcam
 
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
             break
 
-        translated_text = process_frame(frame)
-        if translated_text:
-            break
+        # Convert to RGB for MediaPipe processing
+        image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        results = hands.process(image_rgb)
+
+        if results.multi_hand_landmarks and model:
+            for hand_landmarks in results.multi_hand_landmarks:
+                # Extract hand landmark positions (21 x, y coordinates)
+                landmark_data = np.array([[lm.x, lm.y] for lm in hand_landmarks.landmark]).flatten().reshape(1, -1)
+
+                if landmark_data.shape[1] == 42:  # Ensure correct shape
+                    prediction = model.predict(landmark_data)
+                    predicted_label = np.argmax(prediction)
+
+                    # Use dynamic label map from dataset
+                    word = label_map.get(predicted_label, "Unknown")
+                    if word != "Unknown":
+                        sentence_queue.append(word)
+                        translated_text = " ".join(sentence_queue)  # Update translation text
+
+        # Convert frame back to JPEG format
+        _, buffer = cv2.imencode(".jpg", frame)
+        frame_bytes = buffer.tobytes()
+
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
 
     cap.release()
-    return JsonResponse({"translated_sentence": translated_text})
 
+# API to send the translated text to the frontend
+def get_translated_text(request):
+    return JsonResponse({"translated_sentence": translated_text})
 
 def upload(request):
     return render(request, 'upload.html')

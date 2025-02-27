@@ -309,22 +309,6 @@ translated_text = ""  # Stores the last detected sentence
 
 def sign_video(request):
     return render(request, 'sign_video.html')
-#
-# def upload_training_data(request):
-#     """Admin uploads videos/images for training data collection"""
-#     if request.method == 'POST' and request.FILES.get['file']:
-#         file = request.FILES['file']
-#         filepath = os.path.join("uploads", file.name)
-#
-#         with open(filepath, 'wb+') as destination:
-#             for chunk in file.chunks():
-#                 destination.write(chunk)
-#
-#         label = request.POST.get("label", "unknown") # default label if not provided
-#         process_uploaded_file(filepath, label)
-#
-#         return JsonResponse({"message": f"Processed {file.name} as {label}"})
-#     return render(request, 'upload.html')
 
 def process_live_translation(request):
     return StreamingHttpResponse(generate_frames(), content_type="multipart/x-mixed-replace; boundary=frame")

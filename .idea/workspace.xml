@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="678a464f-7e06-4f5c-be25-66d49a85a0e4" name="Changes" comment="Email messaging on contact us page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dini/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dini/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/data_collection.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/data_collection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/sign_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/sign_recognition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/sign_video.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sign_video.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/master.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +78,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/admins/DjangoProject1&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/admins/DjangoProject1/my_app&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -97,13 +97,14 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/my_app" />
       <recent name="$PROJECT_DIR$/my_app/uploads" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/my_app/static/css" />
       <recent name="$PROJECT_DIR$/my_app/static/img" />
-      <recent name="$PROJECT_DIR$/my_app/static/img/gallery" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/my_app" />
       <recent name="$PROJECT_DIR$/my_app/static" />
     </key>
@@ -230,7 +231,8 @@
       <workItem from="1740470200441" duration="716000" />
       <workItem from="1740472046181" duration="2259000" />
       <workItem from="1740478855577" duration="12324000" />
-      <workItem from="1740581063743" duration="5853000" />
+      <workItem from="1740581063743" duration="7432000" />
+      <workItem from="1740684306074" duration="702000" />
     </task>
     <servers />
   </component>

@@ -3,14 +3,27 @@
     <title>Video</title>
 {% endblock %}
 {% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h1 class="text-center mt-3">Sign Language Recognition</h1>
+                <p>
+                    Experience seamless communication with our virtual interpreter.
+                    Our system provides real-time sign language recognition via video,
+                    speech-to-text conversion, and text-based interpretation to bridge the gap between Deaf and hearing
+                    individuals.
+                    Whether you’re attending a meeting, having a conversation, or seeking assistance, our technology
+                    ensures accessibility anytime, anywhere.
+                </p>
+            </div>
+        </div>
+    </div>
     <div class="container m-5">
-        <h1 class="text-center mt-3">Sign Language Recognition</h1>
-        
         <div class="row gap-5 p-3">
             <div class="col-md-5">
                 <img id="video_feed" src="{% url 'process_live_translation' %}" width="600px">
 
-                
+
             </div>
             <div class="col-md-4 mx-auto m-5 bg-light">
 
@@ -18,7 +31,7 @@
                 <p id="translation">Waiting for translation...</p>
                 <div id="translation"></div>
             </div>
-            
+
         </div>
     </div>
 

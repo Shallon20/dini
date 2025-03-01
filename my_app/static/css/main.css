@@ -47,8 +47,8 @@
 
 
 body {
-    font-family: "Quicksand", serif;
-    font-weight: 700;
+    font-family: "Delius", serif;
+    /*font-weight: 600;*/
     color: var(--default-color);
     background-color: var(--background-color);
 }

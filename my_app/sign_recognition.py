@@ -33,10 +33,10 @@ if os.path.exists(MODEL_PATH):
         model = tf.keras.models.load_model(MODEL_PATH)
         model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
     except Exception as e:
-        print(f"⚠️ ERROR: Unable to load model: {e}")
+        print(f"ERROR: Unable to load model: {e}")
         model = None  # Prevent crashing
 else:
-    print("⚠️ ERROR: sign_model.h5 not found!")
+    print("ERROR: sign_model.h5 not found!")
     model = None  # Prevent crashing
 
 # MediaPipe Hands
@@ -44,8 +44,8 @@ mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 hands = mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
-# Sentence storaaage for continuous translation
-sentence_queue = deque(maxlen=3)  # Store last 3 words
+# Sentence storage for continuous translation
+sentence_queue = deque(maxlen=10)  # Store last 10 words
 
 def process_frame(frame):
     """Process a single frame for hand landmarks and predict sign language."""

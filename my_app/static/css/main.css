@@ -1,6 +1,6 @@
 
 :root {
-    --heading-font: "EB Garamond", serif;
+    --heading-font: "Dosis", sans-serif;
 }
 
 :root {
@@ -47,7 +47,7 @@
 
 
 body {
-    font-family: "Delius", serif;
+    font-family: "Dosis", sans-serif;
     /*font-weight: 600;*/
     color: var(--default-color);
     background-color: var(--background-color);
@@ -73,59 +73,6 @@ h6 {
     color: var(--heading-color);
 }
 
-
-/* PHP Email Form Messages
-------------------------------*/
-.php-email-form .error-message {
-    display: none;
-    background: #df1529;
-    color: #ffffff;
-    text-align: left;
-    padding: 15px;
-    margin-bottom: 24px;
-    font-weight: 600;
-}
-
-.php-email-form .sent-message {
-    display: none;
-    color: #ffffff;
-    background: #059652;
-    text-align: center;
-    padding: 15px;
-    margin-bottom: 24px;
-    font-weight: 600;
-}
-
-.php-email-form .loading {
-    display: none;
-    background: var(--surface-color);
-    text-align: center;
-    padding: 15px;
-    margin-bottom: 24px;
-}
-
-.php-email-form .loading:before {
-    content: "";
-    display: inline-block;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    margin: 0 10px -6px 0;
-    border: 3px solid var(--accent-color);
-    border-top-color: var(--surface-color);
-    animation: php-email-form-loading 1s linear infinite;
-}
-
-@keyframes php-email-form-loading {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 /* Global Header */
 .header {
     color: var(--default-color);
@@ -140,8 +87,6 @@ h6 {
     padding: 10px 0;
 }
 
-
-
 .header .top-bar {
     background-color: var(--heading-color);
     height: 40px;
@@ -152,7 +97,7 @@ h6 {
 .header .logo h1 {
     font-size: 30px;
     margin: 0;
-    font-family: "Caveat", serif;
+    font-family: "Irish Grover", system-ui;
     font-weight: 700;
     color: var(--heading-color);
 }
@@ -197,7 +142,7 @@ h6 {
     .navmenu a:focus {
         color: var(--nav-color);
         padding: 18px 15px;
-        font-size: 13px;
+        font-size: 18px;
         font-weight: 500;
         text-transform: uppercase;
         display: flex;

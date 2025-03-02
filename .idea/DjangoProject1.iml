@@ -20,6 +20,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery-3.5.1.slim" level="application" />
     <orderEntry type="library" name="bootstrap.bundle" level="application" />
+    <orderEntry type="library" name="glightbox" level="application" />
+    <orderEntry type="library" name="aos" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

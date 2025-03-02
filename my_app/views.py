@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from my_app.forms import \
     InterpreterApplicationForm, ContactForm, AppointmentForm, ApplicantRegistrationForm, MpesaDonationForm
-from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation, CommunityGroup
+from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation, CommunityGroup, GalleryImage
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -28,7 +28,8 @@ from .data_collection import process_uploaded_file
 # Create your views here.
 def home(request):
     events = Event.objects.filter(is_new=True).order_by('-date_created')
-    return render(request, 'home.html', {'events': events})
+    images = GalleryImage.objects.all()
+    return render(request, 'home.html', {'events': events, 'images': images})
 
 
 def about(request):

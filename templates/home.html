@@ -10,32 +10,33 @@
 
 {% block content %}
 
-<!-- Latest News & Events Section -->
-<section id="news-events" class="news-events section">
-    <div class="container">
-        <div class="section-header text-center">
-            <h2>Latest News & Events</h2>
-            <p>Stay updated with the latest happenings in the Deaf community.</p>
-        </div>
-        <div class="row">
-            {% for event in events %}
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="news-item bg-white shadow rounded p-3">
-                        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="img-fluid rounded">
-                        <h4 class="mt-3">{{ event.title }}</h4>
-                        <p>{{ event.short_description }}</p>
-                        <p class="text-muted"><small>Published on: {{ event.date_created|date:"F d, Y" }}</small></p>
-                        <a href="{% url 'event_detail' event.id %}" class="btn btn-primary">Read More</a>
+    <!-- Latest News & Events Section -->
+    <section id="news-events" class="news-events section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Latest News & Events</h2>
+                <p>Stay updated with the latest happenings in the Deaf community.</p>
+            </div>
+            <div class="row">
+                {% for event in events %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="news-item bg-white shadow rounded p-3">
+                            <img src="{{ event.image.url }}" alt="{{ event.title }}" class="img-fluid rounded">
+                            <h4 class="mt-3">{{ event.title }}</h4>
+                            <p>{{ event.short_description }}</p>
+                            <p class="text-muted"><small>Published on: {{ event.date_created|date:"F d, Y" }}</small>
+                            </p>
+                            <a href="{% url 'event_detail' event.id %}" class="btn btn-secondary">Read More</a>
+                        </div>
                     </div>
-                </div>
-            {% empty %}
-                <div class="col-12 text-center">
-                    <p class="text-muted">No news or events available at the moment.</p>
-                </div>
-            {% endfor %}
+                {% empty %}
+                    <div class="col-12 text-center">
+                        <p class="text-muted">No news or events available at the moment.</p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- /Latest News & Events Section -->
 
@@ -93,7 +94,7 @@
             </div>
         </div>
     </section><!-- /Call To Action Section -->
-<!-- Gallery Section -->
+    <!-- Gallery Section -->
     <section id="gallery" class="gallery section">
 
         <!-- Section Title -->
@@ -101,79 +102,22 @@
             <h2>Gallery</h2>
             <p>Explore our collection of moments captured in the deaf community.</p>
         </div><!-- End Section Title -->
-
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
+    
+        <div class="container">
+            <h2 class="text-center">Gallery</h2>
 
             <!-- Responsive Image Grid -->
             <div class="row g-4">
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a class="glightbox" data-gallery="images-gallery" 
-                       href="{% static 'img/gallery/gal1.jpg' %}">
-                        <img src="{% static 'img/gallery/gal1.jpg' %}" class="img-fluid" alt="Gallery Image 1">
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a class="glightbox" data-gallery="images-gallery" 
-                       href="{% static 'img/gallery/gal2.jpg' %}">
-                        <img src="{% static 'img/gallery/gal2.jpg' %}" class="img-fluid" alt="Gallery Image 2">
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a class="glightbox" data-gallery="images-gallery" 
-                       href="{% static 'img/gallery/gal3.jpg' %}">
-                        <img src="{% static 'img/gallery/gal3.jpg' %}" class="img-fluid" alt="Gallery Image 3">
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a class="glightbox" data-gallery="images-gallery" 
-                       href="{% static 'img/gallery/gal4.jpg' %}">
-                        <img src="{% static 'img/gallery/gal4.jpg' %}" class="img-fluid" alt="Gallery Image 4">
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a class="glightbox" data-gallery="images-gallery" 
-                       href="{% static 'img/gallery/gal5.jpg' %}">
-                        <img src="{% static 'img/gallery/gal5.jpg' %}" class="img-fluid" alt="Gallery Image 5">
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a class="glightbox" data-gallery="images-gallery" 
-                       href="{% static 'img/gallery/gal6.jpg' %}">
-                        <img src="{% static 'img/gallery/gal6.jpg' %}" class="img-fluid" alt="Gallery Image 6">
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a class="glightbox" data-gallery="images-gallery" 
-                       href="{% static 'img/gallery/gal7.jpg' %}">
-                        <img src="{% static 'img/gallery/gal7.jpg' %}" class="img-fluid" alt="Gallery Image 7">
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a class="glightbox" data-gallery="images-gallery" 
-                       href="{% static 'img/gallery/gal8.jpg' %}">
-                        <img src="{% static 'img/gallery/gal8.jpg' %}" class="img-fluid" alt="Gallery Image 8">
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a class="glightbox" data-gallery="images-gallery" 
-                       href="{% static 'img/gallery/gal9.jpg' %}">
-                        <img src="{% static 'img/gallery/gal9.jpg' %}" class="img-fluid" alt="Gallery Image 8">
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a class="glightbox" data-gallery="images-gallery" 
-                       href="{% static 'img/gallery/gal10.jpg' %}">
-                        <img src="{% static 'img/gallery/gal10.jpg' %}" class="img-fluid" alt="Gallery Image 8">
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a class="glightbox" data-gallery="images-gallery" 
-                       href="{% static 'img/gallery/gal11.jpg' %}">
-                        <img src="{% static 'img/gallery/gal11.jpg' %}" class="img-fluid" alt="Gallery Image 8">
-                    </a>
-                </div>
-            </div><!-- End Grid -->
-
+                {% for image in images %}
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a class="glightbox" data-gallery="images-gallery" href="{{ image.image.url }}">
+                            <img src="{{ image.image.url }}" class="img-fluid" alt="{{ image.title }}">
+                        </a>
+                    </div>
+                {% empty %}
+                    <p class="text-center">No images available</p>
+                {% endfor %}
+            </div>
         </div>
 
     </section><!-- /Gallery Section -->

@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="678a464f-7e06-4f5c-be25-66d49a85a0e4" name="Changes" comment="Email messaging on contact us page">
+      <change beforePath="$PROJECT_DIR$/.idea/DjangoProject1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DjangoProject1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/static/css/bootstrap-icons/bootstrap-icons.css" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/css/bootstrap-icons/bootstrap-icons.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/static/css/bootstrap-icons/bootstrap-icons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/css/bootstrap-icons/bootstrap-icons.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/static/css/bootstrap-icons/fonts/bootstrap-icons.woff" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/css/bootstrap-icons/fonts/bootstrap-icons.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/static/css/bootstrap-icons/fonts/bootstrap-icons.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/css/bootstrap-icons/fonts/bootstrap-icons.woff2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contact-us.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contact-us.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/master.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/past_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/past_events.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +112,7 @@
       <recent name="$PROJECT_DIR$/my_app/static/img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/my_app/static/css/bootstrap-icons/fonts" />
       <recent name="$PROJECT_DIR$/my_app/static/css/bootstrap-icons" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/my_app" />
@@ -238,7 +247,7 @@
       <workItem from="1740750266527" duration="55000" />
       <workItem from="1740847034750" duration="2086000" />
       <workItem from="1740946467864" duration="1202000" />
-      <workItem from="1740947704465" duration="968000" />
+      <workItem from="1740947704465" duration="5333000" />
     </task>
     <servers />
   </component>

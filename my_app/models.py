@@ -8,7 +8,7 @@ from django.db.models.signals import post_save
 class Event(models.Model):
     title = models.CharField(max_length=200)
     short_description = models.TextField()
-    long_description = models.TextField(max_length=500, default=True)
+    long_description = models.TextField(max_length=1000, default=True)
     image = models.ImageField(upload_to='media/')
     date_created = models.DateTimeField(auto_now_add=True)
     is_new = models.BooleanField(default=True, db_index=True)
@@ -136,3 +136,10 @@ class CommunityGroup(models.Model):
 
     def __str__(self):
         return self.name
+
+class GalleryImage(models.Model):
+    image = models.ImageField(upload_to='gallery/')
+    title = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return self.title if self.title else f"Image {self.id}"

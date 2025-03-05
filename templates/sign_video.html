@@ -29,7 +29,7 @@
 
                 <h2>Live Translation:</h2>
                 <p id="translation">Waiting for translation...</p>
-                <div id="translation"></div>
+                <div id="translation-container" style="font-size: 24px; font-weight: bold; line-height: 1.5;"></div>
             </div>
 
         </div>
@@ -40,7 +40,14 @@
             fetch("{% url 'get_translated_text' %}")
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById("translation").innerText = data.translated_sentence;
+                    const translationContainer = document.getElementById("translation-container");
+                    // Clear previous translations
+                    translationContainer.innerHTML = "";
+                    
+                    // Add new translation
+                let newTranslation = document.createElement("p");
+                newTranslation.innerText = data.translated_sentence;
+                translationContainer.appendChild(newTranslation);
                 });
         }
 

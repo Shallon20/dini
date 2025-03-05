@@ -45,7 +45,7 @@ mp_drawing = mp.solutions.drawing_utils
 hands = mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
 # Sentence storage for continuous translation
-sentence_queue = deque(maxlen=10)  # Store last 10 words
+sentence_queue = deque(maxlen=1)  # Store last 10 words
 
 def process_frame(frame):
     """Process a single frame for hand landmarks and predict sign language."""

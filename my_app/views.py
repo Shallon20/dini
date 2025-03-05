@@ -306,7 +306,7 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
 # Store translated text
-sentence_queue = deque(maxlen=10)  # Store last 10 words
+sentence_queue = deque(maxlen=1)  # Store last 10 words
 translated_text = ""  # Stores the last detected sentence
 
 

@@ -52,126 +52,94 @@
         </div>
 
     </section><!-- /About Section -->
-<!-- Interpreters Section -->
-<section id="interpreter" class="interpreter section light-background">
-
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Interpreters</h2>
-        <p>Meet our team of professional interpreters dedicated to empowering communication and fostering
-            inclusivity for the deaf community.</p>
-    </div><!-- End Section Title -->
-
-    <div class="container">
-    <div class="row gy-4">
-        {% for interpreter in interpreters %}
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:100 }}">
-                <div class="team-member bg-white p-3 rounded-lg">
-                    <div class="member-img">
-                        <img src="{% if interpreter.profile_image %}{{ interpreter.profile_image.url }}{% else %}{% static 'img/gallery/default.png' %}{% endif %}" class="img-fluid" alt="">
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4>{{ interpreter.first_name }} {{ interpreter.last_name }}</h4>
-                        <span>{{ interpreter.experience_years }} years of experience</span>
-                    </div>
-                </div>
-            </div><!-- End Team Member -->
-        {% endfor %}
-    </div>
-</div>
-
-
-    </div>
-
-</section><!-- /Interpreters Section -->
-
-
-
-    <!-- Faq Section -->
-    <section id="faq" class="faq section light-background">
+    <!-- Interpreters Section -->
+    <section id="interpreter" class="interpreter section light-background">
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <h2>Frequently Asked Questions</h2>
-            <p>Your questions about our services and platform answered.</p>
+            <h2>Interpreters</h2>
+            <p>Meet our team of professional interpreters dedicated to empowering communication and fostering
+                inclusivity for the deaf community.</p>
         </div><!-- End Section Title -->
 
         <div class="container">
-
-            <div class="row justify-content-center">
-
-                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
-
-                    <div class="faq-container">
-
-                        <div class="faq-item">
-                            <h3>How does the system connect the deaf community with interpreters?</h3>
-                            <div class="faq-content">
-                                <p>The platform enables deaf users, service providers, and interpreters to connect
-                                    either virtually or physically to facilitate effective communication.</p>
+            <div class="row gy-4">
+                {% for interpreter in interpreters %}
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up"
+                         data-aos-delay="{{ forloop.counter|add:100 }}">
+                        <div class="team-member bg-white p-3 rounded-lg">
+                            <div class="member-img">
+                                <img src="
+                                        {% if interpreter.profile_image %}{{ interpreter.profile_image.url }}{% else %}{% static 'img/gallery/default.png' %}{% endif %}"
+                                     class="img-fluid" alt="">
+                                <div class="social">
+                                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                </div>
                             </div>
-                            <i class="faq-toggle bi bi-chevron-right"></i>
-                        </div><!-- End Faq item-->
-
-                        <div class="faq-item">
-                            <h3>Are interpreters available for all sectors?</h3>
-                            <div class="faq-content">
-                                <p>Yes, our interpreters are trained to provide services across sectors such as
-                                    healthcare, education, tourism, and more.</p>
+                            <div class="member-info">
+                                <h4>{{ interpreter.first_name }} {{ interpreter.last_name }}</h4>
+                                <span>{{ interpreter.experience_years }} years of experience</span>
                             </div>
-                            <i class="faq-toggle bi bi-chevron-right"></i>
-                        </div><!-- End Faq item-->
-
-                        <div class="faq-item">
-                            <h3>Can deaf tourists use this platform?</h3>
-                            <div class="faq-content">
-                                <p>Absolutely! The platform supports deaf tourists by connecting them with interpreters
-                                    for a seamless cultural and travel experience.</p>
-                            </div>
-                            <i class="faq-toggle bi bi-chevron-right"></i>
-                        </div><!-- End Faq item-->
-
-                        <div class="faq-item">
-                            <h3>Do I need an internet connection to use this system?</h3>
-                            <div class="faq-content">
-                                <p>An internet connection is required for virtual interpretation services, but physical
-                                    interpretation can be arranged without it.</p>
-                            </div>
-                            <i class="faq-toggle bi bi-chevron-right"></i>
-                        </div><!-- End Faq item-->
-
-                        <div class="faq-item">
-                            <h3>How can I book an interpreter?</h3>
-                            <div class="faq-content">
-                                <p>You can book an interpreter through our platform by browsing available profiles and
-                                    selecting the one that meets your needs.</p>
-                            </div>
-                            <i class="faq-toggle bi bi-chevron-right"></i>
-                        </div><!-- End Faq item-->
-
-                        <div class="faq-item">
-                            <h3>What resources are available for learning sign language?</h3>
-                            <div class="faq-content">
-                                <p>Our platform provides learning materials, tutorials, and access to certified sign
-                                    language instructors.</p>
-                            </div>
-                            <i class="faq-toggle bi bi-chevron-right"></i>
-                        </div><!-- End Faq item-->
-
-                    </div>
-
-                </div><!-- End Faq Column-->
-
+                        </div>
+                    </div><!-- End Team Member -->
+                {% endfor %}
             </div>
+        </div>
+
 
         </div>
 
-    </section><!-- /Faq Section -->
+    </section><!-- /Interpreters Section -->
+    
+    <!-- Faq Section -->
+    <section id="faq" class="faq section light-background">
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Frequently Asked Questions</h2>
+            <p>Your questions about our services and platform answered.</p>
+        </div>
 
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-container">
+                        {% for faq in faqs %}
+                            <div class="faq-item">
+                                <h3 class="faq-question">{{ faq.question }}</h3>
+                                <div class="faq-content">
+                                    <p>{{ faq.answer }}</p>
+                                </div>
+                                <i class="faq-toggle bi bi-chevron-right"></i>
+                            </div>
+                        {% empty %}
+                            <p>No FAQs available at the moment.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
+{% block extra_js %}
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".faq-item").forEach((item) => {
+            item.addEventListener("click", function () {
+                this.classList.toggle("faq-active");
+
+                // Rotate the chevron icon when active
+                let icon = this.querySelector(".faq-toggle");
+                if (this.classList.contains("faq-active")) {
+                    icon.style.transform = "rotate(90deg)";
+                } else {
+                    icon.style.transform = "rotate(0deg)";
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

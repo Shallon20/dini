@@ -143,3 +143,10 @@ class GalleryImage(models.Model):
 
     def __str__(self):
         return self.title if self.title else f"Image {self.id}"
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=500)
+    answer = models.TextField(max_length=500)
+
+    def __str__(self):
+        return self.question

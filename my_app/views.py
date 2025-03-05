@@ -10,7 +10,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from my_app.forms import \
     InterpreterApplicationForm, ContactForm, AppointmentForm, ApplicantRegistrationForm, MpesaDonationForm
-from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation, CommunityGroup, GalleryImage
+from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation, CommunityGroup, \
+    GalleryImage, FAQ
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -34,7 +35,8 @@ def home(request):
 
 def about(request):
     interpreters = InterpreterApplication.objects.filter(status='approved')
-    return render(request, 'about-us.html', {'interpreters': interpreters})
+    faqs = FAQ.objects.all()
+    return render(request, 'about-us.html', {'interpreters': interpreters, 'faqs': faqs})
 
 
 def contact(request):

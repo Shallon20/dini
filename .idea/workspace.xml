@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="678a464f-7e06-4f5c-be25-66d49a85a0e4" name="Changes" comment="Email messaging on contact us page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/sign_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/sign_recognition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/sign_video.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sign_video.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sign_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sign_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sign_model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/sign_model.h5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/contact-us.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contact-us.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +240,8 @@
       <workItem from="1740946467864" duration="1202000" />
       <workItem from="1740947704465" duration="5548000" />
       <workItem from="1741004380345" duration="1273000" />
-      <workItem from="1741188370267" duration="7551000" />
+      <workItem from="1741188370267" duration="7863000" />
+      <workItem from="1741331635148" duration="4087000" />
     </task>
     <servers />
   </component>

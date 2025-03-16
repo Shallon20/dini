@@ -6,12 +6,12 @@ import os
 
 # Initialize MediaPipe Hands
 mp_hands = mp.solutions.hands
-hands = mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.8)
+mp_drawing = mp.solutions.drawing_utils
 
-# Path to store collected data
+# Define labels for sign gestures
 DATA_FILE = "sign_data.csv"
 
-# Create CSV file if it does not exist
+# Create CSV file for dataset if it doesn't exist
 if not os.path.exists(DATA_FILE):
     with open(DATA_FILE, "w", newline="") as file:
         writer = csv.writer(file)
@@ -19,51 +19,81 @@ if not os.path.exists(DATA_FILE):
 
 
 def collect_data(label):
-    """Capture hand landmarks from webcam and save to CSV with a label."""
+    """Collect hand landmarks from webcam and save to CSV"""
     cap = cv2.VideoCapture(0)
 
     if not cap.isOpened():
-        print("ERROR: Could not access the webcam!")
+        print("ERROR: Could not open webcam")
         return
 
-    print(f"Collecting data for: {label}. Press 'q' to stop recording.")
+    frame_skip = 5  # Capture every 5th frame
+    frame_count = 0  # Track processed frames
 
-    frame_count = 0
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            break
+    with mp_hands.Hands(static_image_mode=False, min_detection_confidence=0.8, min_tracking_confidence=0.8) as hands:
+        while cap.isOpened():
+            ret, frame = cap.read()
+            if not ret:
+                break
 
-        image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        results = hands.process(image_rgb)
+            # **Check for 'q' Key Press to Stop**
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                print("Stopping data collection...")
+                break
 
-        if results.multi_hand_landmarks:
-            for hand_landmarks in results.multi_hand_landmarks:
-                # Extract x, y coordinates of 21 landmarks (42 features)
-                landmark_data = np.array([[lm.x, lm.y] for lm in hand_landmarks.landmark]).flatten()
+            # **Display the Camera Feed**
+            cv2.imshow("Collecting Data - Press 'q' to Stop", frame)
 
-                # Save to CSV
-                with open(DATA_FILE, "a", newline="") as file:
-                    writer = csv.writer(file)
-                    writer.writerow([label] + list(landmark_data))
-
+            # Skip frames to avoid redundancy
+            if frame_count % frame_skip != 0:
                 frame_count += 1
-                print(f"Frame {frame_count} saved for {label}")
+                continue
 
-        # Show webcam feed
-        cv2.putText(frame, f"Recording: {label}", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        cv2.imshow("Collecting Data", frame)
+            # Convert image to RGB
+            image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            results = hands.process(image_rgb)
 
-        # Press 'q' to stop collecting data
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+            # Extract hand landmarks
+            if results.multi_hand_landmarks:
+                for hand_landmarks in results.multi_hand_landmarks:
+                    landmark_list = []
+                    for landmark in hand_landmarks.landmark:
+                        landmark_list.append([landmark.x])
+                        landmark_list.append([landmark.y])
+
+                    # Save original data
+                    with open(DATA_FILE, "a", newline="") as file:
+                        writer = csv.writer(file)
+                        writer.writerow([label] + [coord for landmark in landmark_list for coord in landmark])
+
+                    print(f"Saved frame {frame_count}")
+
+            # **FLIP FRAME FOR DATA AUGMENTATION**
+            flipped_frame = cv2.flip(frame, 1)  # Flip image horizontally
+            image_rgb_flipped = cv2.cvtColor(flipped_frame, cv2.COLOR_BGR2RGB)
+            results_flipped = hands.process(image_rgb_flipped)
+
+            if results_flipped.multi_hand_landmarks:
+                for hand_landmarks in results_flipped.multi_hand_landmarks:
+                    landmark_list = []
+                    for landmark in hand_landmarks.landmark:
+                        landmark_list.append([landmark.x])
+                        landmark_list.append([landmark.y])
+
+                    # Save flipped data with SAME label
+                    with open(DATA_FILE, "a", newline="") as file:
+                        writer = csv.writer(file)
+                        writer.writerow([label] + [coord for landmark in landmark_list for coord in landmark])
+
+                    print(f"Saved FLIPPED frame {frame_count}")
+
+            frame_count += 1
 
     cap.release()
-    cv2.destroyAllWindows()
-    print(f"Data collection for '{label}' finished.")
+    cv2.destroyAllWindows()  # Close all OpenCV windows
+    print(f"Data collection for '{label}' completed.")
 
 
-# Run the script
 if __name__ == "__main__":
     label = input("Enter the label for this sign: ")
+    print(f"Collecting data for: {label}. Press 'q' to stop recording.")
     collect_data(label)

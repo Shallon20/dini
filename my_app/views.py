@@ -296,9 +296,10 @@ CSV_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "sign_d
 
 if os.path.exists(CSV_PATH):
     df = pd.read_csv(CSV_PATH)
-    unique_labels = sorted(df["label"].unique())  # Get unique labels in sorted order
+    unique_labels = list(df["label"].unique())  # Keep original order
     label_map = {i: label for i, label in enumerate(unique_labels)}
     print(f"Loaded labels from dataset: {label_map}")  # Debugging output
+
 else:
     label_map = {}  # Empty fallback if CSV is missing
     print("ERROR: sign_data.csv not found!")
@@ -332,14 +333,21 @@ past_predictions = deque(maxlen=5)  # Stores last 5 predictions
 lock = threading.Lock()  # Lock for thread-safe updates
 
 def smooth_prediction(predictions, window_size=5):
-    """Returns the most common prediction in the last 'window_size' frames."""
+    """Returns the most common prediction in the last 'window_size' frames,
+       but avoids rapid switching between competing words."""
     predictions_list = list(predictions)  # Convert deque to list
 
-    if len(predictions) < window_size:
-        return predictions[-1]  # Use last prediction if window is too small
-    counter = Counter(predictions_list[-window_size:])
-    return counter.most_common(1)[0][0]  # Most frequent prediction
+    if len(predictions_list) < window_size:
+        return predictions_list[-1]  # Use last prediction if window is too small
 
+    counter = Counter(predictions_list[-window_size:])
+    most_common = counter.most_common(2)  # Get top 2 predictions
+
+    # If two words appear nearly the same number of times, avoid switching
+    if len(most_common) > 1 and abs(most_common[0][1] - most_common[1][1]) < 3:
+        return predictions_list[-1]  # Keep the last detected word
+
+    return most_common[0][0]  # Return the most frequent word
 def process_frame_for_prediction(landmark_data):
     """Runs TensorFlow prediction in a separate thread to avoid blocking."""
     global translated_text, hands_visible

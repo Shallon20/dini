@@ -5,46 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="678a464f-7e06-4f5c-be25-66d49a85a0e4" name="Changes" comment="Email messaging on contact us page">
-      <change afterPath="$PROJECT_DIR$/my_app/collect_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dini/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dini/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/data_collection.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/data_collection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/media-csv/dataset/SampleSubmission.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/media-csv/dataset/Test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/media-csv/dataset/Train.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/sign_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/sign_recognition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/static/img/dataset-imgs/Images/ImageID_0A4P0UP4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/img/dataset-imgs/Images/ImageID_0A4P0UP4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/static/model/sign_model.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/train_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/train_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/amazing.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/excuseme.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/goodafternoon.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/goodmorning.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/goodthanks.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/goodthanks_fixed.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/hello.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/uploads/hello.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/hello1.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/uploads/hello1.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/hello1_fixed.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/hello2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/uploads/hello2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/hello_fixed.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/howareyou.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/itwasgoodseeingyou.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/mynameis___.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/nicetomeetyou.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/no.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/no_fixed.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/please.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/seeyoulater.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/thankyou.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/thankyou1.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/whatdoyoulike.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/whatdoyoulike_fixed.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/whatsyourname.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/yes.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/yes_fixed.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/uploads/yesno.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/collect_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/collect_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/sign_video.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sign_video.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sign_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sign_model.h5" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,38 +66,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Django Server.DjangoProject1.executor&quot;: &quot;Run&quot;,
-    &quot;Django tests.Test: my_app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sign_recognition.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/admins/DjangoProject1/my_app/media-csv/dataset&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Django Server.DjangoProject1.executor": "Run",
+    "Django tests.Test: my_app.executor": "Run",
+    "Python.sign_recognition.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.tests.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "django.template.preview.state": "SHOW_EDITOR",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/admins/DjangoProject1/my_app/media-csv/dataset",
+    "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/my_app/media-csv/dataset" />
@@ -148,7 +115,7 @@
       <recent name="$PROJECT_DIR$/my_app" />
     </key>
   </component>
-  <component name="RunManager" selected="Django Server.DjangoProject1">
+  <component name="RunManager" selected="Python.tests">
     <configuration name="Test: my_app" type="DjangoTestsConfigurationType" temporary="true">
       <module name="DjangoProject1" />
       <option name="ENV_FILES" value="" />
@@ -216,6 +183,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="tests" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DjangoProject1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/my_app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/my_app/tests.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="DjangoProject1" type="Python.DjangoServer" factoryName="Django server">
       <module name="DjangoProject1" />
       <option name="ENV_FILES" value="" />
@@ -244,6 +234,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.tests" />
         <item itemvalue="Django tests.Test: my_app" />
         <item itemvalue="Python.sign_recognition" />
         <item itemvalue="Python.test" />
@@ -329,7 +320,7 @@
       <workItem from="1741624895621" duration="7809000" />
       <workItem from="1741645406748" duration="850000" />
       <workItem from="1741806679385" duration="3898000" />
-      <workItem from="1742115617544" duration="23345000" />
+      <workItem from="1742115617544" duration="33951000" />
     </task>
     <servers />
   </component>
@@ -343,6 +334,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DjangoProject1$Test__my_app.coverage" NAME="Test: my_app Coverage Results" MODIFIED="1741645524086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/DjangoProject1$test.coverage" NAME="test Coverage Results" MODIFIED="1741645488547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_app" />
+    <SUITE FILE_PATH="coverage/DjangoProject1$tests.coverage" NAME="tests Coverage Results" MODIFIED="1742155636315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_app" />
     <SUITE FILE_PATH="coverage/DjangoProject1$sign_recognition.coverage" NAME="sign_recognition Coverage Results" MODIFIED="1741645506336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_app" />
   </component>
 </project>

@@ -47,7 +47,7 @@ urlpatterns = [
     path('sign_video/', views.sign_video, name='sign_video'),
     # path("upload_training_data/", views.upload_training_data, name="upload_training_data"),
 
-path("recognize/", views.recognize_sign, name="recognize_sign"),
+# path("recognize/", views.recognize_sign, name="recognize_sign"),
     path('admin/', admin.site.urls),
 ]
 if settings.DEBUG:

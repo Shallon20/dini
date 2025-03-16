@@ -1,65 +1,6 @@
-{#{% extends 'master.html' %}#}
-{#{% block title %}#}
-{#    <title>Video</title>#}
-{#{% endblock %}#}
-{#{% block content %}#}
-{#    <div class="container">#}
-{#        <div class="row">#}
-{#            <div class="col-md-8 mx-auto">#}
-{#                <h1 class="text-center mt-3">Sign Language Recognition</h1>#}
-{#                <p>#}
-{#                    Experience seamless communication with our virtual interpreter.#}
-{#                    Our system provides real-time sign language recognition via video,#}
-{#                    speech-to-text conversion, and text-based interpretation to bridge the gap between Deaf and hearing#}
-{#                    individuals.#}
-{#                    Whether you’re attending a meeting, having a conversation, or seeking assistance, our technology#}
-{#                    ensures accessibility anytime, anywhere.#}
-{#                </p>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="container m-5">#}
-{#        <div class="row gap-5 p-3">#}
-{#            <div class="col-md-5">#}
-{#                <img id="video_feed" src="{% url 'process_live_translation' %}" width="600px">#}
-{##}
-{##}
-{#            </div>#}
-{#            <div class="col-md-4 mx-auto m-5 bg-light">#}
-{##}
-{#                <h2>Live Translation:</h2>#}
-{#                <p id="translation">Waiting for translation...</p>#}
-{#                <div id="translation-container" style="font-size: 24px; font-weight: bold; line-height: 1.5;"></div>#}
-{#            </div>#}
-{##}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#    <script>#}
-{#        function fetchTranslation() {#}
-{#            fetch("{% url 'get_translated_text' %}")#}
-{#                .then(response => response.json())#}
-{#                .then(data => {#}
-{#                    const translationContainer = document.getElementById("translation-container");#}
-{#                    // Clear previous translations#}
-{#                    translationContainer.innerHTML = "";#}
-{#                    #}
-{#                    // Add new translation#}
-{#                let newTranslation = document.createElement("p");#}
-{#                newTranslation.innerText = data.translated_sentence;#}
-{#                translationContainer.appendChild(newTranslation);#}
-{#                });#}
-{#        }#}
-{##}
-{#        setInterval(fetchTranslation, 1000);  // Update every second#}
-{#    </script>#}
-{#{% endblock %}#}
-
-
-
 {% extends 'master.html' %}
 {% block title %}
-    <title>Sign Language Recognition</title>
+    <title>Video</title>
 {% endblock %}
 {% block content %}
     <div class="container">
@@ -69,12 +10,15 @@
                 <p>
                     Experience seamless communication with our virtual interpreter.
                     Our system provides real-time sign language recognition via video,
-                    speech-to-text conversion, and text-based interpretation to bridge the gap between Deaf and hearing individuals.
+                    speech-to-text conversion, and text-based interpretation to bridge the gap between Deaf and hearing
+                    individuals.
+                    Whether you’re attending a meeting, having a conversation, or seeking assistance, our technology
+                    ensures accessibility anytime, anywhere.
                 </p>
             </div>
         </div>
     </div>
-
+    
     <div class="container m-5">
         <div class="row gap-5 p-3">
             <div class="col-md-5">
@@ -82,9 +26,9 @@
             </div>
             <div class="col-md-4 mx-auto m-5 bg-light">
                 <h2>Live Translation:</h2>
-                <p id="translation">Waiting for translation...</p>
                 <div id="translation-container" style="font-size: 24px; font-weight: bold; line-height: 1.5;"></div>
             </div>
+
         </div>
     </div>
 
@@ -94,14 +38,20 @@
                 .then(response => response.json())
                 .then(data => {
                     const translationContainer = document.getElementById("translation-container");
-                    translationContainer.innerHTML = "";
-                    
-                    let newTranslation = document.createElement("p");
-                    newTranslation.innerText = data.translated_sentence;
-                    translationContainer.appendChild(newTranslation);
+                    // Clear translation box when no hands are detected
+                    if (data.translated_sentence === "Waiting for translation...") {
+                        translationContainer.innerHTML = "<p style='color: gray;'>Waiting for translation...</p>";
+                    } else {
+                        translationContainer.innerHTML = ""; // Clear previous text
+                        let newTranslation = document.createElement("p");
+                        newTranslation.innerText = data.translated_sentence;
+                        translationContainer.appendChild(newTranslation);
+                    }
                 });
         }
 
-        setInterval(fetchTranslation, 1000);  // Update every second
+        setInterval(fetchTranslation, 1500);  // Update every 1.5 seconds
     </script>
 {% endblock %}
+
+

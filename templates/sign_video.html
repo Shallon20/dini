@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="container m-5">
         <div class="row gap-5 p-3">
             <div class="col-md-5">
@@ -31,6 +31,20 @@
 
         </div>
     </div>
+
+    <!-- Speech-to-Text Translation -->
+    <div class="row m-5">
+        <div class="col-md-8 mx-auto text-center bg-light p-2 rounded-1">
+            <h2 class="mb-5">Speech-to-Text Translation:</h2>
+            <div class="embed-responsive embed-responsive-16by9">
+                <button id="start-recording" class="btn btn-primary">Start Speaking</button>
+                <button id="stop-recording" class="btn btn-danger">Stop</button>
+            </div>
+            <div id="speech-text" class="mt-3" style="font-size: 24px; font-weight: bold;"></div>
+        </div>
+    </div>
+    </div>
+
 
     <script>
         function fetchTranslation() {
@@ -51,6 +65,40 @@
         }
 
         setInterval(fetchTranslation, 1500);  // Update every 1.5 seconds
+
+
+        // Speech-to-Text Translation
+        let recognition;
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = "en-US";
+
+            let speechOutput = document.getElementById("speech-text");
+            let startBtn = document.getElementById("start-recording");
+            let stopBtn = document.getElementById("stop-recording");
+
+            recognition.onresult = function (event) {
+                let transcript = "";
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    transcript += event.results[i][0].transcript;
+                }
+                speechOutput.innerText = transcript;
+            };
+
+            startBtn.onclick = function () {
+                recognition.start();
+                speechOutput.innerText = "Listening...";
+            };
+
+            stopBtn.onclick = function () {
+                recognition.stop();
+            };
+        } else {
+            alert("Speech recognition not supported in this browser.");
+        }
+        
     </script>
 {% endblock %}
 

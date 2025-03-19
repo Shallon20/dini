@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Event, InterpreterApplication, Client, Profile, EducationalResource, Interpretation, CommunityGroup, \
-    GalleryImage, FAQ, SignData
+    GalleryImage, FAQ
 
 
 # Register your models here.
@@ -20,7 +20,7 @@ class InterpreterApplicationAdmin(admin.ModelAdmin):
     search_fields = ('first_name', 'last_name', 'email')
 
 class InterpretationAdmin(admin.ModelAdmin):
-    list_display = ('service_type')
+    list_display = ('service_type',)
 
 
 class CommunityGroupAdmin(admin.ModelAdmin):
@@ -30,10 +30,8 @@ class GalleryImageAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'image')
 
 class FAQAdmin(admin.ModelAdmin):
-    list_display = ('question')
+    list_display = ('question',)
 
-class SignDataAdmin(admin.ModelAdmin):
-    list_display = ('label')
 
 admin.site.register(EducationalResource, EducationalResourceAdmin)
 admin.site.register(Event, EventAdmin)
@@ -44,4 +42,3 @@ admin.site.register(Interpretation)
 admin.site.register(CommunityGroup, CommunityGroupAdmin)
 admin.site.register(GalleryImage, GalleryImageAdmin)
 admin.site.register(FAQ, FAQAdmin)
-admin.site.register(SignData, SignDataAdmin)

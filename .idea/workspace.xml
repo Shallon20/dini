@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="678a464f-7e06-4f5c-be25-66d49a85a0e4" name="Changes" comment="Email messaging on contact us page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sign_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sign_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sign_model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/sign_model.h5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/sign_video.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sign_video.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,7 +335,9 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DjangoProject1$Test__my_app.coverage" NAME="Test: my_app Coverage Results" MODIFIED="1741645524086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/DjangoProject1$test.coverage" NAME="test Coverage Results" MODIFIED="1741645488547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_app" />
-    <SUITE FILE_PATH="coverage/DjangoProject1$tests.coverage" NAME="tests Coverage Results" MODIFIED="1742155636315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_app" />
+    <SUITE FILE_PATH="coverage/DjangoProject1$import_csv_to_db.coverage" NAME="import_csv_to_db Coverage Results" MODIFIED="1742361645456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_app" />
+    <SUITE FILE_PATH="coverage/DjangoProject1$tests.coverage" NAME="tests Coverage Results" MODIFIED="1742372835278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_app" />
+    <SUITE FILE_PATH="coverage/DjangoProject1$import_data.coverage" NAME="import_data Coverage Results" MODIFIED="1742379690819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_app" />
     <SUITE FILE_PATH="coverage/DjangoProject1$sign_recognition.coverage" NAME="sign_recognition Coverage Results" MODIFIED="1741645506336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_app" />
   </component>
 </project>

@@ -150,12 +150,3 @@ class FAQ(models.Model):
 
     def __str__(self):
         return self.question
-
-class SignData(models.Model):
-    label = models.CharField(max_length=100)  # Sign label
-    x_values = models.TextField()  # Store X coordinates
-    y_values = models.TextField()  # Store Y coordinates
-    created_at = models.DateTimeField(auto_now_add=True)  # Timestamp
-
-    def __str__(self):
-        return self.label

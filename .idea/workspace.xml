@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="678a464f-7e06-4f5c-be25-66d49a85a0e4" name="Changes" comment="Email messaging on contact us page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/sign_video.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sign_video.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sign_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sign_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sign_model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/sign_model.h5" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +92,8 @@
   },
   &quot;keyToStringList&quot;: {
     &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+      &quot;sqlite&quot;,
+      &quot;mysql&quot;
     ]
   }
 }</component>
@@ -322,6 +321,7 @@
       <workItem from="1742115617544" duration="34664000" />
       <workItem from="1742197290031" duration="4134000" />
       <workItem from="1742320652478" duration="674000" />
+      <workItem from="1742568867372" duration="322000" />
     </task>
     <servers />
   </component>

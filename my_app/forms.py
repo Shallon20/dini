@@ -71,6 +71,14 @@ class ApplicantRegistrationForm(forms.ModelForm):
             raise forms.ValidationError("Passwords do not match!")
 
         return cleaned_data
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"])  # 🔒 hashes the password
+        if commit:
+            user.save()
+        return user
+
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=100)
     email = forms.EmailField()

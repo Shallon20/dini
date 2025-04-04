@@ -1,7 +1,7 @@
 import logging
 
 from django.contrib import messages
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import JsonResponse, StreamingHttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -9,7 +9,7 @@ from django.core.mail import EmailMessage
 from django.views.decorators.csrf import csrf_exempt
 
 from my_app.forms import \
-    InterpreterApplicationForm, ContactForm, AppointmentForm, ApplicantRegistrationForm, MpesaDonationForm
+    InterpreterApplicationForm, ContactForm, AppointmentForm, ApplicantRegistrationForm, MpesaDonationForm, LoginForm
 from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation, CommunityGroup, \
     GalleryImage, FAQ
 from django.conf import settings
@@ -148,14 +148,26 @@ def register_applicant(request):
 
 def login_applicant(request):
     if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
+        form = LoginForm(request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            messages.success(request, "Login successful!")
-            return redirect("dashboard")  # Redirect to dashboard
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    messages.success(request, "Login successful!")
+                    return redirect("dashboard")
+                else:
+                    messages.error(request, "Account is inactive.")
+            else:
+                messages.error(request, "Invalid username or password.")
+        else:
+            messages.error(request, "Form is invalid.")
+
     else:
-        form = AuthenticationForm()
+        form = LoginForm()
     return render(request, "login.html", {"form": form})
 
 

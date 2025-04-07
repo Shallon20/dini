@@ -1,8 +1,14 @@
+from dotenv import load_dotenv
+load_dotenv()
+
+import base64
+import json
 import logging
 
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
+import requests
 from django.http import JsonResponse, StreamingHttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import EmailMessage
@@ -22,7 +28,7 @@ import tensorflow as tf
 import mediapipe as mp
 import pandas as pd
 import threading
-import time
+from datetime import datetime
 from collections import deque, Counter
 # from .sign_recognition import predict_sign
 # from .sign_recognition import process_frame, predict_sign
@@ -270,29 +276,94 @@ def community_group(request):
     return render(request, 'community.html', {'groups': groups})
 
 
-@csrf_exempt  # If you're using ngrok or testing locally, you may need to disable CSRF for testing.
 def mpesa_donate(request):
-    if request.method == 'POST':
-        phone_number = request.POST.get('phone_number')
-        amount = request.POST.get('amount')
-        # Proceed with the rest of your logic
-        # Validate the data and process the M-Pesa payment
-        return HttpResponse("Donation successful")
+    if request.method == "POST":
+        form = MpesaDonationForm(request.POST)
+        if form.is_valid():
+            phone = form.cleaned_data["phone_number"]
+            amount = form.cleaned_data["amount"]
+
+            timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+            passkey = os.getenv("PASSKEY")
+            shortcode = os.getenv("SHORTCODE")
+            password = base64.b64encode(f"{shortcode}{passkey}{timestamp}".encode()).decode()
+
+            payload = {
+                "BusinessShortCode": shortcode,
+                "Password": password,
+                "Timestamp": timestamp,
+                "TransactionType": "CustomerPayBillOnline",
+                "Amount": str(amount),
+                "PartyA": phone,
+                "PartyB": shortcode,
+                "PhoneNumber": phone,
+                "CallBackURL": "https://f323-102-212-236-130.ngrok-free.app",
+                "AccountReference": "DiniCommunity",
+                "TransactionDesc": "Community Donation"
+            }
+
+            access_token = get_mpesa_token()
+            headers = {
+                "Authorization": f"Bearer {access_token}",
+                "Content-Type": "application/json"
+            }
+
+            res = requests.post("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest", json=payload,
+                                headers=headers)
+
+            if res.status_code == 200:
+                messages.success(request, "Payment initiated! Check your phone.")
+                messages.success(request, "Thank you for your donation! Payment is being processed.")
+
+            else:
+                messages.error(request, "Payment failed. Try again.")
+            return redirect("mpesa_donate")
     else:
-        return HttpResponse("Invalid method. Please submit via POST.", status=405)
+        form = MpesaDonationForm()
 
+    return render(request, "mpesa_donate.html", {"form": form})
 
+def get_mpesa_token():
+    consumer_key = os.getenv("CONSUMER_KEY")
+    consumer_secret = os.getenv("CONSUMER_SECRET")
+
+    auth = f"{consumer_key}:{consumer_secret}"
+    encoded = base64.b64encode(auth.encode()).decode()
+
+    headers = {"Authorization": f"Basic {encoded}"}
+    url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+
+    response = requests.get(url, headers=headers)
+
+    print("Status code:", response.status_code)
+    print("Response text:", response.text)  # <-- Debugging line
+
+    return response.json().get("access_token")
+@csrf_exempt
 def mpesa_callback(request):
-    if request.method == 'POST':
-        # Get the response from M-Pesa
-        response_data = request.POST
-        # Log or process the response as needed (e.g., save payment status to the database)
-        print(response_data)
-        return JsonResponse({"status": "success"}, status=200)
-    else:
-        return JsonResponse({"status": "failed"}, status=400)
+    if request.method == "POST":
+        data = json.loads(request.body.decode('utf-8'))
+        print("M-Pesa Callback Received:", data)
 
+        try:
+            transaction_id = data["Body"]["stkCallback"]["CheckoutRequestID"]
+            result_code = data["Body"]["stkCallback"]["ResultCode"]
 
+            if result_code == 0:
+                amount = data["Body"]["stkCallback"]["CallbackMetadata"]["Item"][0]["Value"]
+                phone = data["Body"]["stkCallback"]["CallbackMetadata"]["Item"][4]["Value"]
+
+                from .models import MpesaTransaction
+                MpesaTransaction.objects.create(
+                    phone_number=phone,
+                    amount=amount,
+                    transaction_id=transaction_id,
+                    status="Success"
+                )
+        except Exception as e:
+            print("Error in callback:", e)
+
+    return HttpResponse("Callback received successfully")
 
 # Load the trained model
 MODEL_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "sign_model.h5"))

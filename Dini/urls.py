@@ -39,7 +39,7 @@ urlpatterns = [
     path('dashboard/', views.applicant_dashboard, name='dashboard'),
     path('comminity_group/', views.community_group, name='community_group'),
     path('mpesa_donate/', views.mpesa_donate, name='mpesa_donate'),
-    path('callback/', views.mpesa_callback, name='mpesa_callback'),
+    path('mpesa/callback/', views.mpesa_callback, name='mpesa_callback'),
 
     path('process-live_translation/', views.process_live_translation, name='process_live_translation'),
     path("get_translated_text/", views.get_translated_text, name="get_translated_text"),

@@ -8,10 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dini/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dini/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/master.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/mpesa_donate.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mpesa_donate.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,7 +331,8 @@
       <workItem from="1743935276054" duration="27000" />
       <workItem from="1743936517790" duration="4687000" />
       <workItem from="1744002884368" duration="15000" />
-      <workItem from="1744033601198" duration="5361000" />
+      <workItem from="1744033601198" duration="5417000" />
+      <workItem from="1744094750876" duration="12194000" />
     </task>
     <servers />
   </component>

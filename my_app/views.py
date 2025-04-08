@@ -15,7 +15,7 @@ from django.core.mail import EmailMessage
 from django.views.decorators.csrf import csrf_exempt
 
 from my_app.forms import \
-    InterpreterApplicationForm, ContactForm, AppointmentForm, ApplicantRegistrationForm, MpesaDonationForm, LoginForm
+    InterpreterApplicationForm, ContactForm, AppointmentForm, ApplicantRegistrationForm, MpesaDonationForm, LoginForm, UserCreationForm
 from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation, CommunityGroup, \
     GalleryImage, FAQ
 from django.conf import settings
@@ -181,6 +181,18 @@ def user_logout(request):
     logout(request)
     return redirect('home')
 
+# Non admin and non-applicant
+def register_user(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Account created successfully!")
+            return redirect("home")  # or dashboard if you have one
+    else:
+        form = UserCreationForm()
+    return render(request, "register_user.html", {"form": form})
 
 @login_required
 def applicant_dashboard(request):
@@ -275,7 +287,7 @@ def community_group(request):
     groups = CommunityGroup.objects.all()
     return render(request, 'community.html', {'groups': groups})
 
-
+@login_required
 def mpesa_donate(request):
     if request.method == "POST":
         form = MpesaDonationForm(request.POST)
@@ -294,10 +306,10 @@ def mpesa_donate(request):
                 "Timestamp": timestamp,
                 "TransactionType": "CustomerPayBillOnline",
                 "Amount": str(amount),
-                "PartyA": phone,
+                "PartyA": os.getenv("RECEIVING_PHONE_NUMBER"),
                 "PartyB": shortcode,
                 "PhoneNumber": phone,
-                "CallBackURL": "https://f323-102-212-236-130.ngrok-free.app",
+                "CallBackURL": "https://enygw.mock.pstmn.io/callback",
                 "AccountReference": "DiniCommunity",
                 "TransactionDesc": "Community Donation"
             }
@@ -308,12 +320,14 @@ def mpesa_donate(request):
                 "Content-Type": "application/json"
             }
 
-            res = requests.post("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest", json=payload,
-                                headers=headers)
+            res = requests.post("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest", json=payload, headers=headers)
 
             if res.status_code == 200:
-                messages.success(request, "Payment initiated! Check your phone.")
-                messages.success(request, "Thank you for your donation! Payment is being processed.")
+                response_data = res.json()
+                if response_data.get("ResponseCode") == "0":
+                    messages.success(request, "Payment initiated! Check your phone for M-Pesa prompt.")
+                else:
+                    messages.error(request, "M-Pesa request failed. Please try again.")
 
             else:
                 messages.error(request, "Payment failed. Try again.")

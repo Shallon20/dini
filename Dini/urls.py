@@ -26,6 +26,7 @@ urlpatterns = [
     path('contact-us/', views.contact, name='contact'),
     path('login/', views.login_applicant, name='login'),
     path('register/', views.register_applicant, name='register'),
+    path('register/user/', views.register_user, name='register_user'),
     path('logout/', views.user_logout, name='logout'),
     path('interpreters/', views.interpreters, name='interpreters'),
     path('appointment/', views.appointment, name='appointment'),

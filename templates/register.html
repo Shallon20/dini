@@ -2,17 +2,17 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h2 class="text-center">Applicant Registration</h2>
-            <form method="post">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <button type="submit" class="btn btn-primary w-100">Register</button>
-            </form>
-            <p class="text-center mt-3">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center">Create and Account</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary w-100">Register</button>
+                </form>
+                <p class="text-center mt-3">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}

@@ -12,11 +12,10 @@
     {% endblock %}
 
 
-<!-- GLightbox -->
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-
-<!-- AOS -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- GLightbox -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <!-- AOS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
     <!-- Fonts -->
 
@@ -31,13 +30,25 @@
         <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 
     {% endblock %}
+    <style>
+        /* Fix dropdown display on mobile */
+        @media (max-width: 991px) {
+            .navmenu .dropdown-menu {
+                display: block;
+                position: static !important;
+                float: none;
+                background-color: #f8f9fa;
+                border: none;
+                box-shadow: none;
+            }
+        }
+    </style>
 
 </head>
 
 <body class="starter-page-page">
 
 <header id="header" class="header sticky-top">
-
 
 
     <div class="branding d-flex align-items-center">
@@ -71,9 +82,13 @@
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                     <li><a href="{% url 'sign_video' %}">Virtual</a></li>
                     {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">My Applications</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'edit_interpreter_profile' %}">Profile</a>
-                        </li>
+                        {% if user.groups.all.0.name == 'Applicants' %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">My Applications</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link"
+                                                    href="{% url 'edit_interpreter_profile' %}">Profile</a>
+                            </li>
+                        {% endif %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>

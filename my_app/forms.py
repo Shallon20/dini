@@ -54,7 +54,13 @@ class InterpreterApplicationForm(forms.ModelForm):
             "instagram": forms.URLInput(attrs={"class": "form-control", "placeholder": "Instagram Profile URL"}),
 
         }
+
+USER_TYPES = [
+    ('general', 'General User'),
+    ('applicant', 'Interpreter Applicant'),
+]
 class ApplicantRegistrationForm(forms.ModelForm):
+    user_type = forms.ChoiceField(choices=USER_TYPES, widget=forms.Select(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput)
     password_confirm = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
 

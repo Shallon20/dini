@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Group
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -143,10 +144,20 @@ def register_applicant(request):
     if request.method == "POST":
         form = ApplicantRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            password = form.cleaned_data["password"]
+            user.set_password(password)
+            user.save()
+
+            # Assign group based on user types
+            user_type = form.cleaned_data["user_type"]
+            group_name = "Applicants" if user_type == "applicant" else "General"
+            group, _ = Group.objects.get_or_create(name=group_name)
+            user.groups.add(group)
+
             login(request, user)
             messages.success(request, "Registration successful!")
-            return redirect("dashboard")  # Redirect to applicant dashboard
+            return redirect("dashboard" if group_name == "Applicants" else "home")
     else:
         form = ApplicantRegistrationForm()
     return render(request, "register.html", {"form": form})
@@ -160,13 +171,15 @@ def login_applicant(request):
             password = form.cleaned_data["password"]
             user = authenticate(request, username=username, password=password)
 
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    messages.success(request, "Login successful!")
+            if user is not None and user.is_active:
+                login(request, user)
+                messages.success(request, "Login successful!")
+
+                # redirect based on group
+                if user.groups.filter(name="Applicants").exists():
                     return redirect("dashboard")
                 else:
-                    messages.error(request, "Account is inactive.")
+                    return redirect("home")
             else:
                 messages.error(request, "Invalid username or password.")
         else:
@@ -180,19 +193,6 @@ def login_applicant(request):
 def user_logout(request):
     logout(request)
     return redirect('home')
-
-# Non admin and non-applicant
-def register_user(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            messages.success(request, "Account created successfully!")
-            return redirect("home")  # or dashboard if you have one
-    else:
-        form = UserCreationForm()
-    return render(request, "register_user.html", {"form": form})
 
 @login_required
 def applicant_dashboard(request):

@@ -97,8 +97,8 @@ class EducationalResource(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
-    file = models.FileField(upload_to='media/', blank=True, null=True)
-    image = models.ImageField(upload_to='media/', blank=True, null=True)
+    file = models.FileField(upload_to='educational_resources/files/', blank=True, null=True)
+    image = models.ImageField(upload_to='educational_resources/images/', blank=True, null=True)
     link = models.URLField(blank=True, null=True)  # For external resources
 
     created_at = models.DateTimeField(auto_now_add=True)

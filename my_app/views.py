@@ -281,7 +281,7 @@ def past_events(request):
 
 
 def educational_resources(request):
-    resources = EducationalResource.objects.prefetch_related('category').all()
+    resources = EducationalResource.objects.all()
     return render(request, 'educational_resources.html', {'resources': resources})
 
 

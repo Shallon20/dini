@@ -22,36 +22,24 @@
         </div><!-- End Section Title -->
 
         <div class="container">
-
             <div class="row gy-4">
                 <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
-                    <img src="{% static 'img/about.jpg' %}" class="img-fluid" alt="About Us">
-                    <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
+                    <img src="{{ about.image.url }}" class="img-fluid" alt="About Us">
                 </div>
                 <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Breaking Communication Barriers for the Deaf Community</h3>
-                    <p class="fst-italic">
-                        We are committed to bridging the gap between the deaf community and the world by providing
-                        access to interpreters and resources that empower communication.
-                    </p>
+                    <h3>{{ about.title }}</h3>
+                    <p class="fst-italic">{{ about.intro_text }}</p>
                     <ul>
-                        <li><i class="bi bi-check2-all"></i> <span>Facilitating seamless communication through virtual and physical interpretation services.</span>
-                        </li>
-                        <li><i class="bi bi-check2-all"></i> <span>Promoting inclusivity by connecting deaf individuals with service providers in all sectors.</span>
-                        </li>
-                        <li><i class="bi bi-check2-all"></i> <span>Providing resources to learn and engage in sign language interpretation.</span>
-                        </li>
+                        <li><i class="bi bi-check2-all"></i> <span>{{ about.bullet_1 }}</span></li>
+                        <li><i class="bi bi-check2-all"></i> <span>{{ about.bullet_2 }}</span></li>
+                        <li><i class="bi bi-check2-all"></i> <span>{{ about.bullet_3 }}</span></li>
                     </ul>
-                    <p>
-                        Our mission is to ensure equal access to services and opportunities for the deaf community,
-                        fostering a society where everyone can thrive regardless of their hearing ability.
-                    </p>
+                    <p>{{ about.description }}</p>
                 </div>
             </div>
-
         </div>
-
     </section><!-- /About Section -->
+
     <!-- Interpreters Section -->
     <section id="interpreter" class="interpreter section light-background">
 
@@ -70,6 +58,8 @@
                         <div class="team-member bg-white p-3 rounded-lg">
                             <div class="member-img">
                                 <img src="
+                                        
+                                        
                                         {% if interpreter.profile_image %}{{ interpreter.profile_image.url }}{% else %}{% static 'img/gallery/default.png' %}{% endif %}"
                                      class="img-fluid" alt="">
                                 <div class="social">
@@ -89,11 +79,8 @@
             </div>
         </div>
 
-
-        </div>
-
     </section><!-- /Interpreters Section -->
-    
+
     <!-- Faq Section -->
     <section id="faq" class="faq section light-background">
         <div class="container section-title" data-aos="fade-up">
@@ -126,20 +113,20 @@
 {% endblock %}
 {% block extra_js %}
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".faq-item").forEach((item) => {
-            item.addEventListener("click", function () {
-                this.classList.toggle("faq-active");
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".faq-item").forEach((item) => {
+                item.addEventListener("click", function () {
+                    this.classList.toggle("faq-active");
 
-                // Rotate the chevron icon when active
-                let icon = this.querySelector(".faq-toggle");
-                if (this.classList.contains("faq-active")) {
-                    icon.style.transform = "rotate(90deg)";
-                } else {
-                    icon.style.transform = "rotate(0deg)";
-                }
+                    // Rotate the chevron icon when active
+                    let icon = this.querySelector(".faq-toggle");
+                    if (this.classList.contains("faq-active")) {
+                        icon.style.transform = "rotate(90deg)";
+                    } else {
+                        icon.style.transform = "rotate(0deg)";
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 {% endblock %}

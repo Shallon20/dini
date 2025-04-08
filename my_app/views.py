@@ -18,7 +18,7 @@ from django.views.decorators.csrf import csrf_exempt
 from my_app.forms import \
     InterpreterApplicationForm, ContactForm, AppointmentForm, ApplicantRegistrationForm, MpesaDonationForm, LoginForm, UserCreationForm
 from my_app.models import Event, EducationalResource, InterpreterApplication, Interpretation, CommunityGroup, \
-    GalleryImage, FAQ
+    GalleryImage, FAQ, FeaturedService, AboutSection
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -39,14 +39,16 @@ from collections import deque, Counter
 # Create your views here.
 def home(request):
     events = Event.objects.filter(is_new=True).order_by('-date_created')
+    featured_services = FeaturedService.objects.all()
     images = GalleryImage.objects.all()
-    return render(request, 'home.html', {'events': events, 'images': images})
+    return render(request, 'home.html', {'events': events, 'images': images, 'featured_services': featured_services})
 
 
 def about(request):
+    about = AboutSection.objects.first()
     interpreters = InterpreterApplication.objects.filter(status='approved')
     faqs = FAQ.objects.all()
-    return render(request, 'about-us.html', {'interpreters': interpreters, 'faqs': faqs})
+    return render(request, 'about-us.html', {'interpreters': interpreters, 'faqs': faqs, 'about': about})
 
 
 def contact(request):

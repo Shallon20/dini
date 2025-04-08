@@ -44,37 +44,15 @@
     <section id="featured-services" class="featured-services section">
         <div class="container">
             <div class="row gy-4">
-                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                {% for service in featured_services %}
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
                     <div class="service-item position-relative">
-                        <div class="icon"><i class="fas fa-language icon"></i></div>
-                        <h4><a href="" class="stretched-link">Physical Sign Language Interpretation</a></h4>
-                        <p>Access skilled interpreters for meetings, medical appointments, and more.</p>
+                        <div class="icon"><i class="{{ service.icon_class }} icon"></i></div>
+                        <h4><a href="{{ service.link }}" class="stretched-link">{{ service.title }}</a></h4>
+                        <p>{{ service.description }}</p>
                     </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-item position-relative">
-                        <div class="icon"><i class="fas fa-phone-alt icon"></i></div>
-                        <h4><a href="" class="stretched-link">Video Interpretation Services</a></h4>
-                        <p>Use video technology to communicate with hearing individuals through sign language.</p>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-item position-relative">
-                        <div class="icon"><i class="fas fa-book-open icon"></i></div>
-                        <h4><a href="" class="stretched-link">Educational Resources</a></h4>
-                        <p>Find learning materials and guides to help with sign language and Deaf culture.</p>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-item position-relative">
-                        <div class="icon"><i class="fas fa-users icon"></i></div>
-                        <h4><a href="" class="stretched-link">Community Support</a></h4>
-                        <p>Join a supportive network of Deaf and Hard of Hearing individuals and allies.</p>
-                    </div>
-                </div><!-- End Service Item -->
+                </div>
+            {% endfor %}
             </div>
         </div>
     </section><!-- /Featured Services Section -->

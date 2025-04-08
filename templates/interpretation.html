@@ -26,7 +26,7 @@
             <div class="col-lg-6">
                 <h3>{{ service.get_service_type_display }}</h3>
                 <p>{{ service.description }}</p>
-                <a href="{% url 'appointment' %}" class="btn btn-primary">Book {{ service.get_service_type_display }}</a>
+                <a href="{% url 'appointment' %}" class="btn btn-secondary">Book {{ service.get_service_type_display }}</a>
             </div>
         </div>
         {% endfor %}

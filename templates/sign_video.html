@@ -19,12 +19,14 @@
         </div>
     </div>
 
-    <div class="container m-5">
-        <div class="row gap-5 p-3">
-            <div class="col-md-5">
-                <img id="video_feed" src="{% url 'process_live_translation' %}" width="600px">
+    <div class="container my-4">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <div class="ratio ratio-4x3">
+                   <img id="video_feed" src="{% url 'process_live_translation' %}" class="img-fluid rounded shadow-sm" style="object-fit: cover; width: 100%; height: 100%;">
+                </div>
             </div>
-            <div class="col-md-4 mx-auto m-5 bg-light">
+            <div class="col-12 col-md-5 mt-4 mt-md-0 bg-light p-3">
                 <h2>Live Translation:</h2>
                 <div id="translation-container" style="font-size: 24px; font-weight: bold; line-height: 1.5;"></div>
             </div>
@@ -33,8 +35,9 @@
     </div>
 
     <!-- Speech-to-Text Translation -->
-    <div class="row m-5">
-        <div class="col-md-8 mx-auto text-center bg-light p-2 rounded-1">
+    <div class="container my-4">
+        <div class="row justify-content-center">
+        <div class="col-12 col-md-8 mx-auto text-center bg-light p-3 rounded">
             <h2 class="mb-5">Speech-to-Text Translation:</h2>
             <div class="embed-responsive embed-responsive-16by9">
                 <button id="start-recording" class="btn btn-primary">Start Speaking</button>
@@ -98,7 +101,7 @@
         } else {
             alert("Speech recognition not supported in this browser.");
         }
-        
+
     </script>
 {% endblock %}
 

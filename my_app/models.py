@@ -161,3 +161,22 @@ class MpesaTransaction(models.Model):
 
     def __str__(self):
         return f"{self.transaction_id} - {self.phone_number}"
+
+class FeaturedService(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    def __str__(self):
+        return self.title
+
+
+class AboutSection(models.Model):
+    title = models.CharField(max_length=255)
+    intro_text = models.TextField()
+    bullet_1 = models.CharField(max_length=255)
+    bullet_2 = models.CharField(max_length=255)
+    bullet_3 = models.CharField(max_length=255)
+    description = models.TextField()
+    image = models.ImageField(upload_to='about_images/')  # optional
+
+    def __str__(self):
+        return self.title

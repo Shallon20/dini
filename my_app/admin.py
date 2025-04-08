@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Event, InterpreterApplication, Client, Profile, EducationalResource, Interpretation, CommunityGroup, \
-    GalleryImage, FAQ, MpesaTransaction
+    GalleryImage, FAQ, MpesaTransaction, FeaturedService, AboutSection
 
 
 # Register your models here.
@@ -22,7 +22,6 @@ class InterpreterApplicationAdmin(admin.ModelAdmin):
 class InterpretationAdmin(admin.ModelAdmin):
     list_display = ('service_type',)
 
-
 class CommunityGroupAdmin(admin.ModelAdmin):
     list_display = ('name', 'platform')
 
@@ -33,7 +32,13 @@ class FAQAdmin(admin.ModelAdmin):
     list_display = ('question',)
 
 class MpesaTransactionAdmin(admin.ModelAdmin):
-    list_display = ('phone_number', 'amount')
+    list_display = ('phone_number', 'amount',)
+
+class FeaturedServiceAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description',)
+
+class AboutSectionAdmin(admin.ModelAdmin):
+    list_display = ('title',)
 
 admin.site.register(EducationalResource, EducationalResourceAdmin)
 admin.site.register(Event, EventAdmin)
@@ -45,4 +50,6 @@ admin.site.register(CommunityGroup, CommunityGroupAdmin)
 admin.site.register(GalleryImage, GalleryImageAdmin)
 admin.site.register(FAQ, FAQAdmin)
 admin.site.register(MpesaTransaction, MpesaTransactionAdmin)
+admin.site.register(FeaturedService, FeaturedServiceAdmin)
+admin.site.register(AboutSection, AboutSectionAdmin)
 

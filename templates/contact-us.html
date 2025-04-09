@@ -30,17 +30,17 @@
             </div>
         {% else %}
             <div class=" container mb-5" data-aos="fade-up" data-aos-delay="200">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.3943000233844!2d37.26019407372915!3d-1.530848035939709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f8724f42e161f%3A0xaf5f3242fb4d6ecb!2sMachakos%20University!5e0!3m2!1sen!2ske!4v1738014877798!5m2!1sen!2ske"
+                <div class="ratio ratio-16x9">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.3943000233844!2d37.26019407372915!3d-1.530848035939709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f8724f42e161f%3A0xaf5f3242fb4d6ecb!2sMachakos%20University!5e0!3m2!1sen!2ske!4v1738014877798!5m2!1sen!2ske"
                         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div><!-- End Google Maps -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="d-flex flex-row gap-5">
-                    <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
                         <div class="row gy-4">
-
                             <div class="col-lg-12">
                                 <div class="info-item d-flex flex-column justify-content-center align-items-center"
                                      data-aos="fade-up" data-aos-delay="200">
@@ -71,12 +71,12 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 mt-5 mt-lg-0 m-3">
+                    <div class="col-lg-6">
                         <h3>Get in touch {{ name }}</h3>
                         <form method="POST">
                             {% csrf_token %}
                             {{ form|crispy }}
-                            <button type="submit" class="btn-get-started">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div><!-- End Contact Form -->
 

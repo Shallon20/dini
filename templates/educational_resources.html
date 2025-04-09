@@ -10,10 +10,7 @@
 
     <!-- Search and Filter -->
     <div class="row mb-4">
-{#        <div class="col-md-6">#}
-{#            <input type="text" class="form-control" placeholder="Search resources..." id="search">#}
-{#        </div>#}
-        <div class="col-md-6">
+      <div class="col-md-6">
             <select class="form-control" id="category">
                 <option value="">Filter by Category</option>
                 <option value="sign-language">Sign Language</option>
@@ -27,7 +24,7 @@
     <div class="row" id="resource-list">
         {% for resource in resources %}
         <div class="col-md-4">
-            <div class="card">
+            <div class="card" data-category="{{ resource.category }}">
                 {% if resource.image %}
                 <img src="{{ resource.image.url }}" class="card-img-top" alt="{{ resource.title }}">
                 {% endif %}
@@ -49,17 +46,11 @@
 </section>
 
 <script>
-    {#document.getElementById("search").addEventListener("keyup", function () {#}
-    {#    let value = this.value.toLowerCase();#}
-    {#    document.querySelectorAll("#resource-list .card").forEach(function (card) {#}
-    {#        let title = card.querySelector(".card-title").innerText.toLowerCase();#}
-    {#        card.style.display = title.includes(value) ? "" : "none";#}
-    {#    });#}
-
     document.getElementById("category").addEventListener("change", function () {
         let category = this.value;
         document.querySelectorAll("#resource-list .card").forEach(function (card) {
-            card.style.display = category === "" || card.querySelector(".card-title").innerText.toLowerCase().includes(category) ? "" : "none";
+            let cardCategory = card.getAttribute("data-category");
+            card.style.display = category === "" || cardCategory === category? "" : "none";
         });
     });
 </script>

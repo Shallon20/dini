@@ -219,7 +219,7 @@ def edit_interpreter_profile(request):
 
     return render(request, 'edit_interpreter_profile.html', {'form': form})
 
-
+@login_required
 def appointment(request):
     if request.method == 'POST':
         form = AppointmentForm(request.POST)

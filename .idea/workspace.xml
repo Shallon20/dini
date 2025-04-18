@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="678a464f-7e06-4f5c-be25-66d49a85a0e4" name="Changes" comment="Email messaging on contact us page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sign_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sign_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sign_model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/sign_model.h5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dini/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dini/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,7 +334,7 @@
       <workItem from="1744221736665" duration="2620000" />
       <workItem from="1744655617308" duration="2625000" />
       <workItem from="1744701126755" duration="1360000" />
-      <workItem from="1744978003567" duration="4770000" />
+      <workItem from="1744978003567" duration="5140000" />
     </task>
     <servers />
   </component>

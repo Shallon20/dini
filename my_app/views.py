@@ -31,9 +31,7 @@ import pandas as pd
 import threading
 from datetime import datetime
 from collections import deque, Counter
-# from .sign_recognition import predict_sign
-# from .sign_recognition import process_frame, predict_sign
-# from .data_collection import process_uploaded_file
+from django.contrib.auth import views as auth_views
 
 
 # Create your views here.
@@ -195,6 +193,22 @@ def login_applicant(request):
 def user_logout(request):
     logout(request)
     return redirect('home')
+
+password_reset = auth_views.PasswordResetView.as_view(
+    template_name='password_reset_form.html'
+)
+
+password_reset_done = auth_views.PasswordResetDoneView.as_view(
+    template_name='password_reset_done.html'
+)
+
+password_reset_confirm = auth_views.PasswordResetConfirmView.as_view(
+    template_name='password_reset_confirm.html'
+)
+
+password_reset_complete = auth_views.PasswordResetCompleteView.as_view(
+    template_name='password_reset_complete.html'
+)
 
 @login_required
 def applicant_dashboard(request):

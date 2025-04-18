@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="678a464f-7e06-4f5c-be25-66d49a85a0e4" name="Changes" comment="Email messaging on contact us page">
+      <change afterPath="$PROJECT_DIR$/templates/password_reset_complete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/password_reset_confirm.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/password_reset_done.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/password_reset_form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/community.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/community.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contact-us.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contact-us.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/past_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/past_events.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dini/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dini/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/master.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -332,7 +338,11 @@
       <workItem from="1744002884368" duration="15000" />
       <workItem from="1744033601198" duration="5417000" />
       <workItem from="1744094750876" duration="28689000" />
-      <workItem from="1744176087249" duration="5835000" />
+      <workItem from="1744176087249" duration="6764000" />
+      <workItem from="1744221736665" duration="2620000" />
+      <workItem from="1744655617308" duration="2625000" />
+      <workItem from="1744701126755" duration="1360000" />
+      <workItem from="1744978003567" duration="2237000" />
     </task>
     <servers />
   </component>

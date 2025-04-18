@@ -27,6 +27,10 @@ urlpatterns = [
     path('login/', views.login_applicant, name='login'),
     path('register/', views.register_applicant, name='register'),
     path('logout/', views.user_logout, name='logout'),
+    path('password_reset/', views.password_reset, name='password_reset'),
+    path('password_reset/done/', views.password_reset_done, name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', views.password_reset_confirm, name='password_reset_confirm'),
+    path('reset/done/', views.password_reset_complete, name='password_reset_complete'),
     path('interpreters/', views.interpreters, name='interpreters'),
     path('appointment/', views.appointment, name='appointment'),
     path('interpretation', views.interpretation, name='interpretation'),
@@ -47,7 +51,7 @@ urlpatterns = [
     path('sign_video/', views.sign_video, name='sign_video'),
     # path("upload_training_data/", views.upload_training_data, name="upload_training_data"),
 
-# path("recognize/", views.recognize_sign, name="recognize_sign"),
+    # path("recognize/", views.recognize_sign, name="recognize_sign"),
     path('admin/', admin.site.urls),
 ]
 if settings.DEBUG:

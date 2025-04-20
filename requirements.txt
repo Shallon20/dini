@@ -96,7 +96,6 @@ pexpect==4.8.0
 prompt_toolkit==3.0.50
 protobuf==4.25.6
 ptyprocess==0.7.0
-pycairo==1.20.1
 pycparser==2.22
 pycups==2.0.1
 pycurl==7.44.1

@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="678a464f-7e06-4f5c-be25-66d49a85a0e4" name="Changes" comment="Email messaging on contact us page">
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dini/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dini/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/sign_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/sign_recognition.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -336,7 +336,7 @@
       <workItem from="1744655617308" duration="2625000" />
       <workItem from="1744701126755" duration="1360000" />
       <workItem from="1744978003567" duration="9386000" />
-      <workItem from="1745155723346" duration="17015000" />
+      <workItem from="1745155723346" duration="18787000" />
     </task>
     <servers />
   </component>

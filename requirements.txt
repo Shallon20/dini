@@ -79,7 +79,6 @@ mdurl==0.1.2
 mediapipe==0.10.21
 ml-dtypes==0.4.1
 more-itertools==8.10.0
-mysqlclient==2.2.7
 namex==0.0.8
 netaddr==0.8.0
 netifaces==0.11.0

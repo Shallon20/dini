@@ -97,7 +97,6 @@ prompt_toolkit==3.0.50
 protobuf==4.25.6
 ptyprocess==0.7.0
 pycparser==2.22
-pycurl==7.44.1
 pydantic==2.5.3
 pydantic_core==2.14.6
 pyelftools==0.27

@@ -101,7 +101,6 @@ pydantic==2.5.3
 pydantic_core==2.14.6
 pyelftools==0.27
 Pygments==2.19.1
-PyGObject==3.42.1
 PyICU==2.8.1
 pyinotify==0.9.6
 PyJWT==2.3.0

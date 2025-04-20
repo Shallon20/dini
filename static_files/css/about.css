@@ -1,0 +1,266 @@
+@import url("main.css");
+.about .content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.about .content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about .content ul li {
+    padding: 10px 0 0 0;
+    display: flex;
+}
+
+.about .content ul i {
+    color: var(--accent-color);
+    margin-right: 0.5rem;
+    line-height: 1.2;
+    font-size: 1.25rem;
+}
+
+.about .content p:last-child {
+    margin-bottom: 0;
+}
+
+.about .pulsating-play-btn {
+    position: absolute;
+    left: calc(50% - 47px);
+    top: calc(50% - 47px);
+}
+/* Interpreters*/
+.interpreters .team-member {
+    background-color: var(--surface-color);
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.interpreters .team-member .member-img {
+    position: relative;
+    overflow: hidden;
+}
+
+.interpreters .team-member .social {
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+    right: 0;
+    opacity: 0;
+    transition: ease-in-out 0.3s;
+    text-align: center;
+}
+
+.interpreters .team-member .social a {
+    background: color-mix(in srgb, var(--contrast-color), transparent 25%);
+    color: color-mix(in srgb, var(--default-color), transparent 20%);
+    margin: 0 3px;
+    border-radius: 4px;
+    width: 36px;
+    height: 36px;
+    transition: ease-in-out 0.3s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.interpreters .team-member .social a:hover {
+    color: var(--contrast-color);
+    background: var(--accent-color);
+}
+
+.interpreters .team-member .social i {
+    font-size: 18px;
+    line-height: 0;
+}
+
+.interpreters .team-member .member-info {
+    padding: 25px 15px;
+}
+
+.interpreters .team-member .member-info h4 {
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.interpreters .team-member .member-info span {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: color-mix(in srgb, var(--default-color), transparent 40%);
+}
+
+.interpreters .team-member:hover .social {
+    opacity: 1;
+    bottom: 15px;
+}
+
+.team-member {
+    background: #fff;
+    border: solid;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+}
+
+.member-img {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 2px solid #ddd;
+    border-radius: 10px 10px 0 0;
+}
+
+.member-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.social {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 6px;
+    border-radius: 50px;
+}
+
+.social a {
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.social a:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.member-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.member-info h4 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.member-info span {
+    font-size: 1rem;
+    color: #777;
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+    .col-lg-3 {
+        flex: 0 0 50%; /* 2 columns on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .col-md-6 {
+        flex: 0 0 100%; /* 1 column on small screens */
+    }
+}
+
+
+
+
+/*--------------------------------------------------------------
+# Faq Section
+--------------------------------------------------------------*/
+.faq .faq-container .faq-item {
+    background-color: var(--surface-color);
+    position: relative;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.faq .faq-container .faq-item:last-child {
+    margin-bottom: 0;
+}
+
+.faq .faq-container .faq-item h3 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 30px 0 0;
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.faq .faq-container .faq-item h3 .num {
+    color: var(--accent-color);
+    padding-right: 5px;
+}
+
+.faq .faq-container .faq-item h3:hover {
+    color: var(--accent-color);
+}
+
+.faq .faq-container .faq-item .faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: 0.3s ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.faq .faq-container .faq-item .faq-content p {
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+.faq .faq-container .faq-item .faq-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 16px;
+    line-height: 0;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.faq .faq-container .faq-item .faq-toggle:hover {
+    color: var(--accent-color);
+}
+
+.faq .faq-container .faq-active {
+    border-color: var(--accent-color);
+}
+
+.faq .faq-container .faq-active h3 {
+    color: var(--accent-color);
+}
+
+.faq .faq-container .faq-active .faq-content {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    opacity: 1;
+    padding-top: 10px;
+}
+
+.faq .faq-container .faq-active .faq-toggle {
+    transform: rotate(90deg);
+    color: var(--accent-color);
+}

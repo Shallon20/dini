@@ -153,7 +153,6 @@ webencodings==0.5.1
 Werkzeug==3.1.2
 wrapt==1.17.2
 xdg==5
-xkit==0.0.0
 xlrd==1.2.0
 youtube-dl==2021.12.17
 zipp==1.0.0

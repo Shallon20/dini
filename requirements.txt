@@ -43,7 +43,6 @@ docopt==0.6.2
 dotenv==0.9.9
 evdev==1.4.0
 exceptiongroup==1.2.0
-eyeD3==0.8.10
 filelock==3.6.0
 Flask==3.0.3
 flatbuffers==25.2.10

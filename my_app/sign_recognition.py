@@ -10,8 +10,12 @@ from collections import deque
 from django.http import JsonResponse
 
 # force TensorFlow to use GPU if available
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
+
+import warnings
+warnings.filterwarnings('ignore')
 # Get the model path dynamically
 MODEL_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "sign_model.h5"))
 DATA_FILE = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "sign_data.csv"))

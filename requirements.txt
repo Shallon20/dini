@@ -81,7 +81,6 @@ ml-dtypes==0.4.1
 more-itertools==8.10.0
 namex==0.0.8
 netaddr==0.8.0
-netifaces==0.11.0
 numpy==1.26.4
 oauthlib==3.2.2
 openai==1.8.0

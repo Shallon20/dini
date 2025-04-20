@@ -44,7 +44,6 @@ flatbuffers==25.2.10
 fonttools==4.56.0
 gast==0.6.0
 google-pasta==0.2.0
-googlemaps==4.10.0
 grpcio==1.70.0
 gunicorn==22.0.0
 h11==0.14.0

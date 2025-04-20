@@ -37,7 +37,6 @@ django-extensions==3.2.3
 django-widget-tweaks==1.5.0
 dnspython==2.6.1
 dotenv==0.9.9
-evdev==1.4.0
 exceptiongroup==1.2.0
 filelock==3.6.0
 Flask==3.0.3

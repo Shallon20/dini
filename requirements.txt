@@ -67,8 +67,6 @@ keyring==23.5.0
 kiwisolver==1.4.8
 kombu==5.4.2
 launchpadlib==1.10.16
-lazr.restfulclient==0.14.4
-lazr.uri==1.0.6
 legacy==0.1.7
 libclang==18.1.1
 lxml==4.9.1

@@ -545,6 +545,35 @@ def get_translated_text(request):
     print(f" Sending translated text to frontend: {translated_text}")  # Debugging output
     return JsonResponse({"translated_sentence": translated_text})
 
+@csrf_exempt
+def predict_sign_from_image(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            image_data = data.get('image', '').split(',')[1]
+            img_bytes = base64.b64decode(image_data)
+            np_arr = np.frombuffer(img_bytes, np.uint8)
+            frame = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+
+            # Run hand detection and prediction
+            image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            results = hands.process(image_rgb)
+
+            if results.multi_hand_landmarks and model:
+                for hand_landmarks in results.multi_hand_landmarks:
+                    landmark_data = np.array([[lm.x, lm.y] for lm in hand_landmarks.landmark]).flatten().reshape(1, -1)
+                    prediction = model.predict(landmark_data, verbose=0)
+                    predicted_label = np.argmax(prediction)
+                    word = label_map.get(predicted_label, "Unknown")
+                    return JsonResponse({'translated_sign': word})
+
+            return JsonResponse({'translated_sign': "Waiting for hands..."})
+
+        except Exception as e:
+            print("Prediction error:", e)
+            return JsonResponse({'translated_sign': "Error processing frame."})
+
+
 def upload(request):
     return render(request, 'upload.html')
 

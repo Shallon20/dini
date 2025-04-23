@@ -540,8 +540,8 @@ def generate_frames():
 # API to send the translated text to the frontend
 def get_translated_text(request):
     global translated_text
-    if translated_text == "":  # ✅ If no hands, send empty translation
-        return JsonResponse({"translated_sentence": "Waiting for translation..."})
+    if translated_text == "":  # If no hands, send empty translation
+        return JsonResponse({"translated_sentence": "Waiting for hands..."})
     print(f" Sending translated text to frontend: {translated_text}")  # Debugging output
     return JsonResponse({"translated_sentence": translated_text})
 

@@ -52,25 +52,6 @@
 
 
     <script>
-        function fetchTranslation() {
-            fetch("{% url 'get_translated_text' %}")
-                .then(response => response.json())
-                .then(data => {
-                    const translationContainer = document.getElementById("translation-container");
-                    // Clear translation box when no hands are detected
-                    if (data.translated_sentence === "Waiting for translation...") {
-                        translationContainer.innerHTML = "<p style='color: gray;'>Waiting for translation...</p>";
-                    } else {
-                        translationContainer.innerHTML = ""; // Clear previous text
-                        let newTranslation = document.createElement("p");
-                        newTranslation.innerText = data.translated_sentence;
-                        translationContainer.appendChild(newTranslation);
-                    }
-                });
-        }
-
-        setInterval(fetchTranslation, 1500);  // Update every 1.5 seconds
-
 
         // Speech-to-Text Translation
         let recognition;
